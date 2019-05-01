@@ -55,39 +55,33 @@
 			}
 
 			#pageCurrent {
-				opacity: 1;
-				top: 0;
+				top: 0vh;
 				transition: none;
 			}
 
 			#pageCurrent.animate {
-				opacity: 0;
-				top: -70vh;
-				transition: top 500ms, opacity 500ms;
+				top: -100vh;
+				transition: top 500ms;
 			}
 
 			#pageNext {
-				opacity: 0;
-				bottom: -70vh;
+				bottom: -100vh;
 				pointer-events: none;
 			}
 
 			#pageNext.animate {
-				opacity: 1;
 				bottom: 0vh;
-				transition: bottom 500ms, opacity 500ms;
+				transition: bottom 500ms;
 			}
 
 			#pagePrev {
-				opacity: 0;
-				top: -70vh;
+				top: -100vh;
 				pointer-events: none;
 			}
 
 			#pagePrev.animate {
-				opacity: 1;
 				top: 0vh;
-				transition: top 500ms, opacity 500ms;
+				transition: top 500ms;
 			}
 
 			.gradient {
