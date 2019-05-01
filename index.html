@@ -59,8 +59,13 @@
 				transition: none;
 			}
 
-			#pageCurrent.animate {
+			#pageCurrent.animateNext {
 				top: -100vh;
+				transition: top 500ms;
+			}
+
+			#pageCurrent.animatePrev {
+				top: 100vh;
 				transition: top 500ms;
 			}
 
@@ -432,13 +437,13 @@
 
 					if (current < slides.length){
 						document.querySelector("#pageNext").style.backgroundImage = "url('." + slides[current].background + "')";
-						document.getElementById("pageCurrent").classList.add("animate");
+						document.getElementById("pageCurrent").classList.add("animateNext");
 						document.getElementById("pageNext").classList.add("animate");
 
 						setTimeout(function() {
 							document.querySelector("#pageCurrent").style.backgroundImage = "url('." + slides[current].background + "')";
 							document.querySelector("#pageCurrent > .content").innerHTML = "";
-							document.getElementById("pageCurrent").classList.remove("animate");
+							document.getElementById("pageCurrent").classList.remove("animateNext");
 							document.getElementById("pageNext").classList.remove("animate");
 							document.querySelector("#pageCurrent > .next").classList.remove("animate");
 							loadSlide();
@@ -458,13 +463,13 @@
 
 					if (current >= 0){
 						document.querySelector("#pagePrev").style.backgroundImage = "url('." + slides[current].background + "')";
-						document.getElementById("pageCurrent").classList.add("animate");
+						document.getElementById("pageCurrent").classList.add("animatePrev");
 						document.getElementById("pagePrev").classList.add("animate");
 
 						setTimeout(function() {
 							document.querySelector("#pageCurrent").style.backgroundImage = "url('." + slides[current].background + "')";
 							document.querySelector("#pageCurrent > .content").innerHTML = "";
-							document.getElementById("pageCurrent").classList.remove("animate");
+							document.getElementById("pageCurrent").classList.remove("animatePrev");
 							document.getElementById("pagePrev").classList.remove("animate");
 							document.querySelector("#pageCurrent > .next").classList.remove("animate");
 							loadSlide();
