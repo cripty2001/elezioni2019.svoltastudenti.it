@@ -55,27 +55,38 @@
 			}
 
 			#pageCurrent {
-				opacity: 1;
-				top: 0;
+				top: 0vh;
 				transition: none;
 			}
 
-			#pageCurrent.animate {
-				opacity: 0;
-				top: -70vh;
-				transition: top 500ms, opacity 500ms;
+			#pageCurrent.animateNext {
+				top: -100vh;
+				transition: top 500ms;
+			}
+
+			#pageCurrent.animatePrev {
+				top: 100vh;
+				transition: top 500ms;
 			}
 
 			#pageNext {
-				opacity: 0;
-				bottom: -70vh;
+				bottom: -100vh;
 				pointer-events: none;
 			}
 
 			#pageNext.animate {
-				opacity: 1;
 				bottom: 0vh;
-				transition: bottom 500ms, opacity 500ms;
+				transition: bottom 500ms;
+			}
+
+			#pagePrev {
+				top: -100vh;
+				pointer-events: none;
+			}
+
+			#pagePrev.animate {
+				top: 0vh;
+				transition: top 500ms;
 			}
 
 			.gradient {
@@ -426,20 +437,49 @@
 
 					if (current < slides.length){
 						document.querySelector("#pageNext").style.backgroundImage = "url('." + slides[current].background + "')";
-						document.getElementById("pageCurrent").classList.add("animate");
+						document.getElementById("pageCurrent").classList.add("animateNext");
 						document.getElementById("pageNext").classList.add("animate");
 
 						setTimeout(function() {
 							document.querySelector("#pageCurrent").style.backgroundImage = "url('." + slides[current].background + "')";
 							document.querySelector("#pageCurrent > .content").innerHTML = "";
-							document.getElementById("pageCurrent").classList.remove("animate");
+							document.getElementById("pageCurrent").classList.remove("animateNext");
 							document.getElementById("pageNext").classList.remove("animate");
 							document.querySelector("#pageCurrent > .next").classList.remove("animate");
 							loadSlide();
 						}, 600);
 					}
 					else {
+						loading = false;
+						current = slides.length - 1;
 						document.querySelector("#pageCurrent > .next").innerHTML = "Slideshow Ended";
+					}
+				}
+			}
+
+			function prevSlide(){
+				if (loading === false){
+					loading = true;
+
+					current--;
+
+					if (current >= 0){
+						document.querySelector("#pagePrev").style.backgroundImage = "url('." + slides[current].background + "')";
+						document.getElementById("pageCurrent").classList.add("animatePrev");
+						document.getElementById("pagePrev").classList.add("animate");
+
+						setTimeout(function() {
+							document.querySelector("#pageCurrent").style.backgroundImage = "url('." + slides[current].background + "')";
+							document.querySelector("#pageCurrent > .content").innerHTML = "";
+							document.getElementById("pageCurrent").classList.remove("animatePrev");
+							document.getElementById("pagePrev").classList.remove("animate");
+							document.querySelector("#pageCurrent > .next").classList.remove("animate");
+							loadSlide();
+						}, 600);
+					}
+					else {
+						loading = false;
+						current = 0;
 					}
 				}
 			}
@@ -463,6 +503,10 @@
 				document.addEventListener("wheel", function(e){if (e.deltaY > 0) {nextSlide();}});
 				document.addEventListener("keydown", function(e){if (e.keyCode == 40) {nextSlide();}});
 				document.addEventListener("keydown", function(e){if (e.keyCode == 39) {nextSlide();}});
+
+				document.addEventListener("wheel", function(e){if (e.deltaY < 0) {prevSlide();}});
+				document.addEventListener("keydown", function(e){if (e.keyCode == 37) {prevSlide();}});
+				document.addEventListener("keydown", function(e){if (e.keyCode == 38) {prevSlide();}});
 			});
 		</script>
 		<meta name="application-name" content="SVOLTASTUDENTI | Elezioni 2019">
@@ -482,6 +526,9 @@
 			<a href="#" style="transition-delay: 500ms;">
 				<img src="./img/articles.png" alt="Visualizza articoli">
 			</a>
+		</div>
+		<div class="page" id="pagePrev">
+			<div class="gradient"></div>
 		</div>
 		<div class="page" id="pageCurrent">
 			<div class="gradient"></div>
