@@ -450,6 +450,8 @@
 						}, 600);
 					}
 					else {
+						loading = false;
+						current = slides.length - 1;
 						document.querySelector("#pageCurrent > .next").innerHTML = "Slideshow Ended";
 					}
 				}
@@ -474,6 +476,10 @@
 							document.querySelector("#pageCurrent > .next").classList.remove("animate");
 							loadSlide();
 						}, 600);
+					}
+					else {
+						loading = false;
+						current = 0;
 					}
 				}
 			}
