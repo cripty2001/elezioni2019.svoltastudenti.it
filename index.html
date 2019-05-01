@@ -1,0 +1,500 @@
+<html>
+	<head>
+		<title>
+			SVOLTASTUDENTI | Elezioni 2019
+		</title>
+		<style>
+			html, body {
+				padding: 0px;
+				margin: 0px;
+				font-family: 'Lato', sans-serif;
+				background-color: #A54200;
+			}
+
+			#header {
+				width: 90%;
+				left: 5%;
+				right: 5%;
+				top: 2%;
+				position: fixed;
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+				z-index: 1;
+			}
+
+			#header > * {
+				opacity: 1;
+			}
+
+			#header.hide > * {
+				opacity: 0;
+			}
+
+			#header > * {
+				transition-property: opacity;
+				transition-duration: 1s;
+			}
+
+			.page {
+				height: 100vh;
+				width: 100%;
+				display: flex;
+				position: fixed;
+				flex-direction: column;
+				align-items: stretch;
+				justify-content: center;
+
+				background-origin: padding-box;
+			    background-position: center;
+			    background-repeat: no-repeat;
+			    background-size: cover;
+			    background-color: gray;
+
+			    text-align: center;
+			}
+
+			#pageCurrent {
+				opacity: 1;
+				top: 0;
+				transition: none;
+			}
+
+			#pageCurrent.animate {
+				opacity: 0;
+				top: -70vh;
+				transition: top 500ms, opacity 500ms;
+			}
+
+			#pageNext {
+				opacity: 0;
+				bottom: -70vh;
+				pointer-events: none;
+			}
+
+			#pageNext.animate {
+				opacity: 1;
+				bottom: 0vh;
+				transition: bottom 500ms, opacity 500ms;
+			}
+
+			.gradient {
+				z-index: 0;
+				height: 100%;
+				width: 100%;
+				position: absolute;
+				background: -webkit-linear-gradient(45deg, rgba(255, 84, 84,0.6) 0%, rgba(145, 232, 66,0.6) 100%);
+				background: -o-linear-gradient(45deg, rgba(255, 84, 84,0.6) 0%, rgba(145, 232, 66,0.6) 100%);
+				background: -moz-linear-gradient(45deg, rgba(255, 84, 84,0.6) 0%, rgba(145, 232, 66,0.6) 100%);
+				background: linear-gradient(45deg, rgba(255, 84, 84,0.6) 0%, rgba(145, 232, 66,0.6) 100%);
+			}
+
+			.animProp-dirbottom {
+				position: relative;
+				bottom: -20vh;
+				opacity: 0;
+			}
+
+			.animProp-dirbottom.animate {
+				opacity: 1;
+				bottom: 0vh;
+				transition-property: opacity, bottom;
+			}
+
+			.animDur-500ms {
+				transition-duration: 500ms;
+			}
+
+			.animDur-1s {
+				transition-duration: 1s;
+			}
+
+			.animDel-500ms {
+				transition-delay: 500ms;
+			}
+
+			.animDel-1s {
+				transition-delay: 1s;
+			}
+
+			.animDel-1500ms {
+				transition-delay: 1s;
+			}
+
+			.animDel-2s {
+				transition-delay: 2s;
+			}
+
+			.content {
+				z-index: 1;
+			}
+
+			.next {
+				z-index: 2;
+				position: absolute;
+				bottom: 50px;
+				left: 0px;
+				right: 0px;
+				text-align: center;
+				opacity: 0;
+			}
+
+			.next.animate {
+				transition-delay: 4s;
+				transition-property: opacity;
+				transition-duration: 2s;
+				opacity: 1;
+			}
+
+			.row {
+				display: flex;
+				flex-direction: column;
+			}
+
+			.title {
+				font-weight: bold;
+				color: white;
+				border-bottom: 5px solid white;
+				padding-bottom: 1vh;
+			}
+
+			.text {
+				color: white;
+			}
+
+			.btn {
+				text-decoration: none;
+				color: initial;
+				font-weight: bold;
+				display: inline-block;
+				flex-shrink: 0;
+				flex-grow: 0;
+				cursor: pointer;
+			}
+
+			.btn-dark {
+				background-color: #f60;
+				color: white;
+			}
+
+			.btn-light {
+				border: 1px solid #f60;
+				color: #f60;
+			}
+
+			.title {
+				margin-bottom: 30px;
+				font-size: x-large;
+				font-size: xx-large;
+			}
+
+			.text {
+				font-size: x-large;
+				margin-bottom: 10px;
+			}
+
+			.btn {
+				padding-top: 10px;
+				padding-bottom: 10px;
+				padding-left: 40px;
+				padding-right: 40px;
+				border-radius: 30px;
+				font-size: large;
+			}
+
+			@media all and (min-width: 720px){
+				.row {
+					display: flex;
+					flex-direction: row;
+				}
+
+				.row-cell {
+					width: 50%;
+					margin-left: 1vw;
+					margin-right: 1vw;
+				}
+
+				.row-cell-l {
+					text-align: right;
+				}
+
+				.row-cell-r {
+					text-align: left
+				}
+
+				.title {
+					margin-bottom: 3vmin;
+					font-size: 6vmin;
+				}
+
+				.text {
+					font-size: 2vmin;
+					margin-bottom: 1vmin;
+				}
+
+				.btn {
+					margin-top: 1vmin;
+					margin-bottom: 1vmin;
+					margin-left: 4vmin;
+					margin-right: 4vmin;
+					border-radius: 3vmin;
+					font-size: 4vmin;
+				}
+			}
+		</style>
+		<script>
+			var slides = [
+				{
+					type: "single",
+					background: "/img/background/1.png",
+					data: [
+						{
+							type: "image",
+							src: "/img/logo.png",
+							alt: "Sounds Good",
+							animation: {
+								direction: "bottom",
+								transition: "opacity",
+								duration: "1s",
+								delay: "2s"
+							}
+						}
+					]
+				},
+				{
+					type: "double",
+					background: "/img/background/2.png",
+					data: [
+						[
+							{
+								type: "image",
+								src: "/img/logo.png",
+								alt: "Sounds Good2",
+								animation: {
+									direction: "bottom",
+									transition: "opacity",
+									duration: "1s",
+									delay: "500ms"
+								}
+							}
+						],
+						[
+							{
+								type: "title",
+								text: "studenti in scambio",
+								animation: {
+									direction: "bottom",
+									transition: "opacity",
+									duration: "1s",
+									delay: "1s"
+								}
+							},
+							{
+								type: "text",
+								text: "blablabla",
+								animation: {
+									direction: "bottom",
+									transition: "opacity",
+									duration: "1s",
+									delay: "1s"
+								}
+							}
+						]
+					]
+				},
+				{
+					type: "single",
+					background: "/img/background/3.png",
+					data: [
+						{
+							type: "title",
+							text: "I numeri sono fatti per essere cambiati<br /><br />Aiutaci a farlo",
+							animation: {
+								direction: "bottom",
+								transition: "opacity",
+								duration: "1s",
+								delay: "1s"
+							}
+						}
+					]
+				},
+				{
+					type: "single",
+					background: "/img/background/4.png",
+					data: [
+						{
+							type: "button",
+							style: "dark",
+							link: "#",
+							text: "Scarica il programma",
+							animation: {
+								direction: "bottom",
+								transition: "opacity",
+								duration: "1s",
+								delay: "1s"
+							}
+						},
+						{
+							type: "text",
+							text: "oppure scopri il programma nazionale",
+							animation: {
+								direction: "bottom",
+								transition: "opacity",
+								duration: "1s",
+								delay: "2s"
+							}
+						}
+					]
+				}
+			];
+			var preloading = [
+				"img/background/1.png",
+				"img/background/2.png",
+				"img/background/3.png",
+				"img/background/4.png",
+				"img/background/5.png"
+			];
+			var current = 0;
+			var loading = false;
+
+			function startAnimation(){
+				setTimeout(function(){
+					document.getElementById("header").classList.remove("hide");
+					loadSlide();
+				}, 500);
+			}
+
+			function loadSlide(){
+				var toReturn = "";
+				var data = slides[current];
+
+				switch (data.type){
+					case "single":
+						toReturn = data.data.map(getComponent);
+						break;
+					case "double":
+						toReturn = '<div class="row"><div class="row-cell row-cell-l">' + data.data[0].map(getComponent) + '</div><div class="row-cell row-cell-r">' + data.data[1].map(getComponent) + '</div></div>';
+						break;
+					default:
+						// Nothing
+				}
+
+				document.querySelector("#pageCurrent > .content").innerHTML = toReturn;
+				setTimeout(function(){
+					document.querySelectorAll("#pageCurrent > .content *").forEach(function(item) {
+						item.classList.add("animate");
+					});
+					document.querySelector("#pageCurrent > .next").classList.add("animate");
+					
+					loading = false;
+				}, 100);
+			}
+
+			function getComponent(data){
+				var toReturn = "";
+
+				switch (data.type){
+					case "image":
+						toReturn = '<img src=".' + data.src + '" alt="' + data.alt + '" class="' + getAnimation(data.animation) + '">'
+						break;
+					case "title":
+						toReturn = '<div class="title ' + getAnimation(data.animation) + '">' + data.text + '</div>';
+						break;
+					case "text":
+						toReturn = '<div class="text ' + getAnimation(data.animation) + '">' + data.text + '</div>';
+						break;
+					case "button":
+						toReturn = '<a href="' + data.link +'" class="btn btn-' + data.style + ' ' + getAnimation(data.animation) + '">' + data.text + '</a>';
+						break;
+					default:
+						// Nothing
+				}
+
+				return toReturn;
+			}
+
+			function getAnimation(data){
+				return 'animProp-dir' + data.direction + ' animDur-' + data.duration + ' animDel-' + data.delay;
+			}
+
+			function nextSlide(){
+				if (loading === false){
+					loading = true;
+
+					current++;
+
+					if (current < slides.length){
+						document.querySelector("#pageNext").style.backgroundImage = "url('." + slides[current].background + "')";
+						document.getElementById("pageCurrent").classList.add("animate");
+						document.getElementById("pageNext").classList.add("animate");
+
+						setTimeout(function() {
+							document.querySelector("#pageCurrent").style.backgroundImage = "url('." + slides[current].background + "')";
+							document.querySelector("#pageCurrent > .content").innerHTML = "";
+							document.getElementById("pageCurrent").classList.remove("animate");
+							document.getElementById("pageNext").classList.remove("animate");
+							document.querySelector("#pageCurrent > .next").classList.remove("animate");
+							loadSlide();
+						}, 600);
+					}
+					else {
+						document.querySelector("#pageCurrent > .next").innerHTML = "Slideshow Ended";
+					}
+				}
+			}
+
+			function preload(){
+				preloading.forEach(function(item){
+					fetch("." + item)
+					.then(function(){
+						// Nothing, just preloading
+					});
+				});
+			}
+
+			document.addEventListener("DOMContentLoaded", function(event){
+				preload();
+				document.getElementById("pageCurrent").style.backgroundImage = "url('." + slides[0].background + "')";
+				startAnimation();
+				loadSlide();
+
+				// "Scroll" event listeners
+				document.addEventListener("wheel", function(e){if (e.deltaY > 0) {nextSlide();}});
+				document.addEventListener("keydown", function(e){if (e.keyCode == 40) {nextSlide();}});
+				document.addEventListener("keydown", function(e){if (e.keyCode == 39) {nextSlide();}});
+			});
+		</script>
+		<meta name="application-name" content="SVOLTASTUDENTI | Elezioni 2019">
+		<meta name="apple-mobile-web-app-title" content="SVOLTASTUDENTI | Elezioni 2019">
+		<meta name="theme-color" content="#f60">
+		<meta name="msapplication-navbutton-color" content="#f60">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="SVOLTASTUDENTI | Elezioni 2019">
+		<meta name="keywords" content="Svoltastudenti, Elezioni 2019 Polimi">
+		<meta name="author" content="Svoltastudenti">
+		<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+	</head>
+	<body>
+		<div id="header" class="hide">
+			<img src="./img/logo_svolta.png" alt="Svoltastudenti" style="transition-delay: 0s;">
+			<a href="#" style="transition-delay: 500ms;">
+				<img src="./img/articles.png" alt="Visualizza articoli">
+			</a>
+		</div>
+		<div class="page" id="pageCurrent">
+			<div class="gradient"></div>
+			<div class="content">
+				<!-- Automatically filled -->
+			</div>
+			<div class="next">
+				<a href="javascript:nextSlide()">
+					<img src="./img/next.gif" alt="next">
+				</a>
+			</div>
+		</div>
+		<div class="page" id="pageNext">
+			<div class="gradient"></div>
+		</div>
+	</body>
+</html>
