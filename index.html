@@ -54,6 +54,29 @@
 			    text-align: center;
 			}
 
+			.logo {
+				width: 80%;
+				max-width: 500px;
+			}
+
+			.siteLogo {
+				height: 100%;
+				max-width: 215px;
+			}
+
+			.website {
+				max-height: 25px;
+			}
+
+			.website-link {
+				color: #FFF;
+				text-decoration: none;
+			}
+
+			.nextImage {
+				max-height: 50px;
+			}
+
 			#pageCurrent {
 				top: 0vh;
 				transition: none;
@@ -94,10 +117,36 @@
 				height: 100%;
 				width: 100%;
 				position: absolute;
-				background: -webkit-linear-gradient(45deg, rgba(255, 84, 84,0.6) 0%, rgba(145, 232, 66,0.6) 100%);
-				background: -o-linear-gradient(45deg, rgba(255, 84, 84,0.6) 0%, rgba(145, 232, 66,0.6) 100%);
-				background: -moz-linear-gradient(45deg, rgba(255, 84, 84,0.6) 0%, rgba(145, 232, 66,0.6) 100%);
-				background: linear-gradient(45deg, rgba(255, 84, 84,0.6) 0%, rgba(145, 232, 66,0.6) 100%);
+				background: linear-gradient(45deg, rgba(255, 84, 84, 0.6) 0%, rgba(145, 232, 66, 0.6) 100%);
+			}
+
+			.gradient.blueorange {
+				background: linear-gradient(45deg, rgba(0, 74, 193, 0.6) 0%, rgba(255, 101, 1, 0.6) 100%);
+			}
+
+			.gradient.redgreen {
+				background: linear-gradient(45deg, rgba(225, 0, 25, 0.6) 0%, rgba(0, 96, 27, 0.6) 100%);
+			}
+
+			.gradient.greenred {
+				background: linear-gradient(45deg, rgba(0, 96, 27, 0.6) 0%, rgba(225, 0, 25, 0.6) 100%);
+			}
+
+			.gradient.pinkyellow {
+				background: linear-gradient(45deg, rgba(249, 158, 255, 0.6) 0%, rgba(225, 246, 0, 0.6) 100%);
+			}
+
+			.gradient.yellowpink {
+				background: linear-gradient(45deg, rgba(225, 246, 0, 0.6) 0%, rgba(249, 158, 255, 0.6) 100%);
+			}
+
+			.gradient.pinkcyan {
+				background: linear-gradient(45deg, rgba(248, 129, 255, 0.6) 0%, rgba(0, 252, 255, 0.6) 100%);
+			}
+			}
+
+			.gradient.cyanpink {
+				background: linear-gradient(45deg, rgba(0, 252, 255, 0.6) 0%, rgba(248, 129, 255, 0.6) 100%);
 			}
 
 			.animProp-dirbottom {
@@ -257,12 +306,13 @@
 			var slides = [
 				{
 					type: "single",
-					background: "/img/bg/1.png",
+					background: "/img/bg/1.jpg",
 					data: [
 						{
 							type: "image",
 							src: "/img/logo.png",
 							alt: "Sounds Good",
+							class: "logo",
 							animation: {
 								direction: "bottom",
 								transition: "opacity",
@@ -274,12 +324,176 @@
 				},
 				{
 					type: "double",
-					background: "/img/bg/2.png",
+					background: "/img/bg/2.jpg",
 					data: [
 						[
 							{
 								type: "image",
-								src: "/img/logo.png",
+								src: "/img/logo2.png",
+								alt: "Sounds Good2",
+								animation: {
+									direction: "bottom",
+									transition: "opacity",
+									duration: "1s",
+									delay: "500ms"
+								}
+							}
+						],
+						[
+							{
+								type: "title",
+								text: "studenti in scambio",
+								animation: {
+									direction: "bottom",
+									transition: "opacity",
+									duration: "1s",
+									delay: "1s"
+								}
+							},
+							{
+								type: "text",
+								text: "blablabla",
+								animation: {
+									direction: "bottom",
+									transition: "opacity",
+									duration: "1s",
+									delay: "1s"
+								}
+							}
+						]
+					]
+				},
+				{
+					type: "double",
+					background: "/img/bg/3.jpg",
+					data: [
+						[
+							{
+								type: "image",
+								src: "/img/logo2.png",
+								alt: "Sounds Good2",
+								animation: {
+									direction: "bottom",
+									transition: "opacity",
+									duration: "1s",
+									delay: "500ms"
+								}
+							}
+						],
+						[
+							{
+								type: "title",
+								text: "studenti in scambio",
+								animation: {
+									direction: "bottom",
+									transition: "opacity",
+									duration: "1s",
+									delay: "1s"
+								}
+							},
+							{
+								type: "text",
+								text: "blablabla",
+								animation: {
+									direction: "bottom",
+									transition: "opacity",
+									duration: "1s",
+									delay: "1s"
+								}
+							}
+						]
+					]
+				},
+				{
+					type: "double",
+					background: "/img/bg/4.jpg",
+					data: [
+						[
+							{
+								type: "image",
+								src: "/img/logo2.png",
+								alt: "Sounds Good2",
+								animation: {
+									direction: "bottom",
+									transition: "opacity",
+									duration: "1s",
+									delay: "500ms"
+								}
+							}
+						],
+						[
+							{
+								type: "title",
+								text: "studenti in scambio",
+								animation: {
+									direction: "bottom",
+									transition: "opacity",
+									duration: "1s",
+									delay: "1s"
+								}
+							},
+							{
+								type: "text",
+								text: "blablabla",
+								animation: {
+									direction: "bottom",
+									transition: "opacity",
+									duration: "1s",
+									delay: "1s"
+								}
+							}
+						]
+					]
+				},
+				{
+					type: "double",
+					background: "/img/bg/5.jpg",
+					data: [
+						[
+							{
+								type: "image",
+								src: "/img/logo2.png",
+								alt: "Sounds Good2",
+								animation: {
+									direction: "bottom",
+									transition: "opacity",
+									duration: "1s",
+									delay: "500ms"
+								}
+							}
+						],
+						[
+							{
+								type: "title",
+								text: "studenti in scambio",
+								animation: {
+									direction: "bottom",
+									transition: "opacity",
+									duration: "1s",
+									delay: "1s"
+								}
+							},
+							{
+								type: "text",
+								text: "blablabla",
+								animation: {
+									direction: "bottom",
+									transition: "opacity",
+									duration: "1s",
+									delay: "1s"
+								}
+							}
+						]
+					]
+				},
+				{
+					type: "double",
+					background: "/img/bg/6.jpg",
+					data: [
+						[
+							{
+								type: "image",
+								src: "/img/logo2.png",
 								alt: "Sounds Good2",
 								animation: {
 									direction: "bottom",
@@ -315,7 +529,7 @@
 				},
 				{
 					type: "single",
-					background: "/img/bg/3.png",
+					background: "orange",
 					data: [
 						{
 							type: "title",
@@ -331,7 +545,7 @@
 				},
 				{
 					type: "single",
-					background: "/img/bg/4.png",
+					background: "/img/bg/8.jpg",
 					data: [
 						{
 							type: "button",
@@ -359,11 +573,13 @@
 				}
 			];
 			var preloading = [
-				"/img/bg/1.png",
-				"/img/bg/2.png",
-				"/img/bg/3.png",
-				"/img/bg/4.png",
-				"/img/bg/5.png",
+				"/img/bg/1.jpg",
+				"/img/bg/2.jpg",
+				"/img/bg/3.jpg",
+				"/img/bg/4.jpg",
+				"/img/bg/5.jpg",
+				"/img/bg/6.jpg",
+				"/img/bg/8.jpg",
 				"/img/logo.png",
 			];
 			var current = 0;
@@ -407,7 +623,7 @@
 
 				switch (data.type){
 					case "image":
-						toReturn = '<img src=".' + data.src + '" alt="' + data.alt + '" class="' + getAnimation(data.animation) + '">'
+						toReturn = '<img src=".' + data.src + '" alt="' + data.alt + '" class="' + getAnimation(data.animation) + ' ' + data.class + '">'
 						break;
 					case "title":
 						toReturn = '<div class="title ' + getAnimation(data.animation) + '">' + data.text + '</div>';
@@ -522,9 +738,10 @@
 	</head>
 	<body>
 		<div id="header" class="hide">
-			<img src="./img/logo_svolta.png" alt="Svoltastudenti" style="transition-delay: 0s;">
-			<a href="#" style="transition-delay: 500ms;">
-				<img src="./img/articles.png" alt="Visualizza articoli">
+			<img src="./img/logo_svolta.png" alt="Svoltastudenti" style="transition-delay: 0s;" class="logo siteLogo">
+			<a href="https://svoltastudenti.it/it/" style="transition-delay: 500ms;" class="website-link">
+				<span>Vai agli articoli</span>
+				<img src="./img/website.svg" alt="Visualizza articoli" class="website">
 			</a>
 		</div>
 		<div class="page" id="pagePrev">
@@ -537,7 +754,7 @@
 			</div>
 			<div class="next">
 				<a href="javascript:nextSlide()">
-					<img src="./img/next.gif" alt="next">
+					<img src="./img/next.svg" alt="next" class="nextImage">
 				</a>
 			</div>
 		</div>
