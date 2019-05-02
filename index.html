@@ -24,7 +24,7 @@
 				position: fixed;
 				display: flex;
 				flex-direction: row;
-		  justify-content: space-between;
+				justify-content: space-between;
 				z-index: 1;
 			}
 
@@ -58,11 +58,6 @@
 
 			.nextImage {
 				max-height: 50px;
-			}
-
-			.left {
-				width: 82%;
-				max-width: 500px;
 			}
 
 			.page {
@@ -201,6 +196,11 @@
 				flex-direction: column;
 			}
 
+			.row-cell-l img {
+				width: 82%;
+				max-width: 500px;
+			}
+
 			.title {
 				font-weight: bold;
 				color: white;
@@ -244,18 +244,9 @@
 			}
 
 			.btn {
-				padding-top: 10px;
-				padding-bottom: 10px;
-				padding-left: 40px;
-				padding-right: 40px;
-				border-radius: 30px;
 				font-size: large;
-			}
-
-			.btn {
-			border-radius: unset !important;
-			padding: 10px 20px !important;
-			border: 1px solid white !important;
+				padding: 10px 20px;
+				border: 1px solid white;
 			}
 
 			@media all and (min-width: 720px){
@@ -290,11 +281,6 @@
 				}
 
 				.btn {
-					margin-top: 1vmin;
-					margin-bottom: 1vmin;
-					margin-left: 4vmin;
-					margin-right: 4vmin;
-					border-radius: 3vmin;
 					font-size: 4vmin;
 				}
 			}
@@ -323,13 +309,13 @@
 				{
 					type: "double",
 					background: "/img/bg/2.jpg",
-					gradient: "linear-gradient(45deg, rgba(225, 0, 25, 0.6) 0%, rgba(0, 96, 27, 0.6) 100%)",
+					gradient: "linear-gradient(45deg, rgba(0, 96, 27, 0.6) 0%, rgba(225, 0, 25, 0.6) 100%)",
 					data: [
 						[
 							{
 								type: "image",
 								src: "/img/left/2.png",
-								alt: "Sounds Good2",
+								alt: "One over twentyfive",
 								animation: {
 									direction: "bottom",
 									transition: "opacity",
@@ -371,7 +357,7 @@
 							{
 								type: "image",
 								src: "/img/left/3.png",
-								alt: "Sounds Good2",
+								alt: "One percent",
 								animation: {
 									direction: "bottom",
 									transition: "opacity",
@@ -413,7 +399,7 @@
 							{
 								type: "image",
 								src: "/img/left/4.png",
-								alt: "Sounds Good2",
+								alt: "Seven",
 								animation: {
 									direction: "bottom",
 									transition: "opacity",
@@ -449,13 +435,13 @@
 				{
 					type: "double",
 					background: "/img/bg/5.jpg",
-					gradient: "aaa",
+					gradient: "linear-gradient(45deg, rgba(225, 0, 25, 0.6) 0%, rgba(0, 96, 27, 0.6) 100%)",
 					data: [
 						[
 							{
 								type: "image",
 								src: "/img/left/5.png",
-								alt: "Sounds Good2",
+								alt: "One over four",
 								animation: {
 									direction: "bottom",
 									transition: "opacity",
@@ -497,7 +483,7 @@
 							{
 								type: "image",
 								src: "/img/left/6.png",
-								alt: "Sounds Good2",
+								alt: "One over six",
 								animation: {
 									direction: "bottom",
 									transition: "opacity",
@@ -550,13 +536,13 @@
 				{
 					type: "single",
 					background: "/img/bg/8.jpg",
-					gradient: "linear-gradient(45deg, rgba(0, 74, 193, 0.6) 0%, rgba(255, 101, 1, 0.6) 100%)",
+					gradient: "linear-gradient(45deg, rgba(255, 101, 1, 0.6) 0%, rgba(0, 74, 193, 0.6) 100%)",
 					data: [
 						{
 							type: "button",
 							style: "dark",
 							link: "#",
-							text: "Scarica il programma",
+							text: "Leggi il programma",
 							animation: {
 								direction: "bottom",
 								transition: "opacity",
