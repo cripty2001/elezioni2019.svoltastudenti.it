@@ -423,10 +423,10 @@
 
 				switch (data.type){
 					case "single":
-						toReturn = data.data.map(getComponent);
+						toReturn = data.data.map(getComponent).join("");
 						break;
 					case "double":
-						toReturn = '<div class="row"><div class="row-cell row-cell-l">' + data.data[0].map(getComponent) + '</div><div class="row-cell row-cell-r">' + data.data[1].map(getComponent) + '</div></div>';
+						toReturn = '<div class="row"><div class="row-cell row-cell-l">' + data.data[0].map(getComponent).join("") + '</div><div class="row-cell row-cell-r">' + data.data[1].map(getComponent).join("") + '</div></div>';
 						break;
 					default:
 						// Nothing
