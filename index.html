@@ -648,7 +648,7 @@
 						// Nothing
 				}
 
-				document.querySelector("#pageCurrent > .content").innerHTML = toReturn;	document.querySelector("#pageCurrent .gradient").style.background = data.gradient;
+				document.querySelector("#pageCurrent > .content").innerHTML = toReturn;
 				setTimeout(function(){
 					document.querySelectorAll("#pageCurrent > .content *").forEach(function(item) {
 						item.classList.add("animate");
@@ -701,10 +701,11 @@
 						document.getElementById("pageCurrent").classList.add("animateNext");
 						document.getElementById("pageNext").classList.add("animate");
 
-						setTimeout(function() {
+						document.querySelector("#pageNext .gradient").style.background = slides[current].gradient;
+                                           setTimeout(function() {
 							document.querySelector("#pageCurrent").style.backgroundImage = "url('." + slides[current].background + "')";
 							document.querySelector("#pageCurrent > .content").innerHTML = "";
-							document.getElementById("pageCurrent").classList.remove("animateNext");
+						document.querySelector("#pageCurrent .gradient").style.background = slides[current].gradient;	document.getElementById("pageCurrent").classList.remove("animateNext");
 							document.getElementById("pageNext").classList.remove("animate");
 							document.querySelector("#pageCurrent > .next").classList.remove("animate");
 							loadSlide();
@@ -729,10 +730,12 @@
 						document.getElementById("pageCurrent").classList.add("animatePrev");
 						document.getElementById("pagePrev").classList.add("animate");
 
-						setTimeout(function() {
+						document.querySelector("#pagePrev .gradient").style.background = slides[current].gradient;
+                                            setTimeout(function() {
 							document.querySelector("#pageCurrent").style.backgroundImage = "url('." + slides[current].background + "')";
 							document.querySelector("#pageCurrent > .content").innerHTML = "";
-							document.getElementById("pageCurrent").classList.remove("animatePrev");
+							document.querySelector("#pageCurrent .gradient").style.background = slides[current].gradient;
+document.getElementById("pageCurrent").classList.remove("animatePrev");
 							document.getElementById("pagePrev").classList.remove("animate");
 							document.querySelector("#pageCurrent > .next").classList.remove("animate");
 							loadSlide();
