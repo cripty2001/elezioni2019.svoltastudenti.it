@@ -759,7 +759,8 @@ document.getElementById("pageCurrent").classList.remove("animatePrev");
 
 			document.addEventListener("DOMContentLoaded", function(event){
 				preload();
-				document.getElementById("pageCurrent").style.backgroundImage = "url('." + slides[0].background + "')";
+			document.querySelector("#pageCurrent .gradient").style.background = slides[0].gradient;	document.getElementById("pageCurrent").style.backgroundImage = "url('." + slides[0].background + "')";
+
 				startAnimation();
 				loadSlide();
 
