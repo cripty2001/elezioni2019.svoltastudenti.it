@@ -122,7 +122,6 @@
 				left: 0px;
 				right: 0px;
 				text-align: center;
-				opacity: 0;
 			}
 
 			.row {
@@ -543,12 +542,6 @@
 			document.addEventListener("DOMContentLoaded", function(event){
 				preload();
 				loadSlides();
-				// document.querySelector("#pageCurrent .gradient").style.background = slides[0].gradient;
-				// document.getElementById("pageCurrent").style.backgroundImage = "url('." + slides[0].background + "')";
-				// document.querySelector("#pageCurrent > .next > #topLink").style.display = "none";
-
-				// startAnimation();
-				// loadSlide();
 
 				// "Scroll" event listeners
 				document.addEventListener("wheel", function(e){if (e.deltaY > 0) {nextSlide();}});
