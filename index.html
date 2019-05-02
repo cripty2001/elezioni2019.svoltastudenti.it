@@ -11,8 +11,6 @@
 				background-color: #A54200;
 			}
 
-
-
 			a {
 				color: #FFF;
 				text-decoration: none;
@@ -26,7 +24,7 @@
 				position: fixed;
 				display: flex;
 				flex-direction: row;
-          justify-content: space-between;
+		  justify-content: space-between;
 				z-index: 1;
 			}
 
@@ -41,24 +39,6 @@
 			#header > * {
 				transition-property: opacity;
 				transition-duration: 1s;
-			}
-
-			.page {
-				height: 100vh;
-				width: 100%;
-				display: flex;
-				position: fixed;
-				flex-direction: column;
-				align-items: stretch;
-				justify-content: center;
-
-				background-origin: padding-box;
-			    background-position: center;
-			    background-repeat: no-repeat;
-			    background-size: cover;
-			    background-color: gray;
-
-			    text-align: center;
 			}
 
 			.logo {
@@ -83,6 +63,24 @@
 			.left {
 				width: 82%;
 				max-width: 500px;
+			}
+
+			.page {
+				height: 100%;
+				width: 100%;
+				display: flex;
+				position: fixed;
+				flex-direction: column;
+				align-items: stretch;
+				justify-content: center;
+
+				background-origin: padding-box;
+				background-position: center;
+				background-repeat: no-repeat;
+				background-size: cover;
+				background-color: gray;
+
+				text-align: center;
 			}
 
 			#pageCurrent {
@@ -118,6 +116,20 @@
 			#pagePrev.animate {
 				top: 0vh;
 				transition: top 500ms;
+			}
+
+			#cover {
+				background-color: #f60;
+				opacity: 0;
+				pointer-events: none;
+				transition: opacity 1s;
+				transition-delay: 1s; 
+			}
+
+			#cover.animate {
+				opacity: 1;
+				pointer-events: initial;
+				transition: opacity 1s;
 			}
 
 			.gradient {
@@ -241,9 +253,9 @@
 			}
 
 			.btn {
-		  	border-radius: unset !important;
-		    padding: 10px 20px !important;
-		    border: 1px solid white !important;
+			border-radius: unset !important;
+			padding: 10px 20px !important;
+			border: 1px solid white !important;
 			}
 
 			@media all and (min-width: 720px){
@@ -609,18 +621,17 @@
 				}
 
 				document.querySelector("#pageCurrent > .content").innerHTML = toReturn;
+
 				setTimeout(function(){
 					document.querySelectorAll("#pageCurrent > .content *").forEach(function(item) {
 						item.classList.add("animate");
 					});
 					document.querySelector("#pageCurrent > .next").classList.add("animate");
-
-
 				}, 100);
 
 				setTimeout(function(){
-        loading = false;
-    }, 3000);
+					loading = false;
+				}, 3000);
 			}
 
 			function getComponent(data){
@@ -662,10 +673,11 @@
 						document.getElementById("pageNext").classList.add("animate");
 
 						document.querySelector("#pageNext .gradient").style.background = slides[current].gradient;
-                                           setTimeout(function() {
+						setTimeout(function() {
 							document.querySelector("#pageCurrent").style.backgroundImage = "url('." + slides[current].background + "')";
 							document.querySelector("#pageCurrent > .content").innerHTML = "";
-						document.querySelector("#pageCurrent .gradient").style.background = slides[current].gradient;	document.getElementById("pageCurrent").classList.remove("animateNext");
+							document.querySelector("#pageCurrent .gradient").style.background = slides[current].gradient;
+							document.getElementById("pageCurrent").classList.remove("animateNext");
 							document.getElementById("pageNext").classList.remove("animate");
 							document.querySelector("#pageCurrent > .next").classList.remove("animate");
 							loadSlide();
@@ -674,7 +686,8 @@
 					else {
 						loading = false;
 						current = slides.length - 1;
-						document.querySelector("#pageCurrent > .next").innerHTML = "Slideshow Ended";
+						document.querySelector("#pageCurrent > .next > #nextLink").style.display = "none";
+						document.querySelector("#pageCurrent > .next > #topLink").style.display = "initial";
 					}
 				}
 			}
@@ -689,13 +702,15 @@
 						document.querySelector("#pagePrev").style.backgroundImage = "url('." + slides[current].background + "')";
 						document.getElementById("pageCurrent").classList.add("animatePrev");
 						document.getElementById("pagePrev").classList.add("animate");
-
 						document.querySelector("#pagePrev .gradient").style.background = slides[current].gradient;
-                                            setTimeout(function() {
+						setTimeout(function() {
+
+							document.querySelector("#pageCurrent > .next > #nextLink").style.display = "initial";
+							document.querySelector("#pageCurrent > .next > #topLink").style.display = "none";
 							document.querySelector("#pageCurrent").style.backgroundImage = "url('." + slides[current].background + "')";
 							document.querySelector("#pageCurrent > .content").innerHTML = "";
 							document.querySelector("#pageCurrent .gradient").style.background = slides[current].gradient;
-document.getElementById("pageCurrent").classList.remove("animatePrev");
+							document.getElementById("pageCurrent").classList.remove("animatePrev");
 							document.getElementById("pagePrev").classList.remove("animate");
 							document.querySelector("#pageCurrent > .next").classList.remove("animate");
 							loadSlide();
@@ -705,6 +720,22 @@ document.getElementById("pageCurrent").classList.remove("animatePrev");
 						loading = false;
 						current = 0;
 					}
+				}
+			}
+
+			function backToTop(){
+				if (loading === false){
+					loading = true;
+
+					current = 0;
+
+					document.getElementById("cover").classList.add("animate");
+					setTimeout(function(){
+						document.querySelector("#pageCurrent > .next > #nextLink").style.display = "initial";
+						document.querySelector("#pageCurrent > .next > #topLink").style.display = "none";
+						loadSlide();
+						document.getElementById("cover").classList.remove("animate");
+					}, 1000);
 				}
 			}
 
@@ -719,7 +750,9 @@ document.getElementById("pageCurrent").classList.remove("animatePrev");
 
 			document.addEventListener("DOMContentLoaded", function(event){
 				preload();
-			document.querySelector("#pageCurrent .gradient").style.background = slides[0].gradient;	document.getElementById("pageCurrent").style.backgroundImage = "url('." + slides[0].background + "')";
+				document.querySelector("#pageCurrent .gradient").style.background = slides[0].gradient;
+				document.getElementById("pageCurrent").style.backgroundImage = "url('." + slides[0].background + "')";
+				document.querySelector("#pageCurrent > .next > #topLink").style.display = "none";
 
 				startAnimation();
 				loadSlide();
@@ -761,13 +794,19 @@ document.getElementById("pageCurrent").classList.remove("animatePrev");
 				<!-- Automatically filled -->
 			</div>
 			<div class="next">
-				<a href="javascript:nextSlide()">
-					<img src="./img/next.svg" alt="next" class="nextImage">
+				<a href="javascript:nextSlide()" id="nextLink">
+					<img src="./img/next.svg" alt="Next Slide" class="nextImage">
+				</a>
+				<a href="javascript:backToTop()" id="topLink">
+					<img src="./img/top.svg" alt="Back to Top" class="nextImage">
 				</a>
 			</div>
 		</div>
 		<div class="page" id="pageNext">
 			<div class="gradient"></div>
+		</div>
+		<div class="page" id="cover">
+
 		</div>
 	</body>
 </html>
