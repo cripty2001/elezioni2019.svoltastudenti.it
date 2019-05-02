@@ -60,6 +60,14 @@
 				max-height: 50px;
 			}
 
+			.italic {
+				font-style: italic;
+			}
+
+			.wideTitle {
+				border: none !important;
+			}
+
 			.page {
 				height: 100%;
 				width: 100%;
@@ -523,7 +531,8 @@
 					data: [
 						{
 							type: "title",
-							text: "I numeri sono fatti per essere cambiati<br /><br />Aiutaci a farlo",
+							class: "wideTitle",
+							text: "I numeri sono fatti per essere cambiati.<br /><br /><span class='italic'>Aiutaci a farlo.</span>",
 							animation: {
 								direction: "bottom",
 								transition: "opacity",
@@ -632,7 +641,7 @@
 						toReturn = '<img src=".' + data.src + '" alt="' + data.alt + '" class="' + getAnimation(data.animation) + ' ' + data.class + '">'
 						break;
 					case "title":
-						toReturn = '<div class="title ' + getAnimation(data.animation) + '">' + data.text + '</div>';
+						toReturn = '<div class="title ' + getAnimation(data.animation) + ' ' + data.class + '">' + data.text + '</div>';
 						break;
 					case "text":
 						toReturn = '<div class="text ' + getAnimation(data.animation) + '">' + data.text + '</div>';
