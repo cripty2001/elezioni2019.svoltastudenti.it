@@ -11,6 +11,13 @@
 				background-color: #A54200;
 			}
 
+
+
+			a {
+				color: #FFF;
+				text-decoration: none;
+			}
+
 			#header {
 				width: 90%;
 				left: 5%;
@@ -61,6 +68,7 @@
 
 			.siteLogo {
 				height: 100%;
+				width: 50%;
 				max-width: 215px;
 			}
 
@@ -68,13 +76,13 @@
 				max-height: 25px;
 			}
 
-			.website-link {
-				color: #FFF;
-				text-decoration: none;
-			}
-
 			.nextImage {
 				max-height: 50px;
+			}
+
+			.left {
+				width: 82%;
+				max-width: 500px;
 			}
 
 			#pageCurrent {
@@ -117,7 +125,6 @@
 				height: 100%;
 				width: 100%;
 				position: absolute;
-				background: linear-gradient(45deg, rgba(255, 84, 84, 0.6) 0%, rgba(145, 232, 66, 0.6) 100%);
 			}
 
 			.gradient.blueorange {
@@ -262,6 +269,12 @@
 				font-size: large;
 			}
 
+			.btn {
+		  	border-radius: unset !important;
+		    padding: 10px 20px !important;
+		    border: 1px solid white !important;
+			}
+
 			@media all and (min-width: 720px){
 				.row {
 					display: flex;
@@ -279,7 +292,8 @@
 				}
 
 				.row-cell-r {
-					text-align: left
+					text-align: left;
+					padding: 50px;
 				}
 
 				.title {
@@ -329,8 +343,9 @@
 						[
 							{
 								type: "image",
-								src: "/img/logo2.png",
-								alt: "Sounds Good2",
+								src: "/img/left/2.png",
+								class: "left",
+								alt: "One over twentyfive",
 								animation: {
 									direction: "bottom",
 									transition: "opacity",
@@ -370,8 +385,9 @@
 						[
 							{
 								type: "image",
-								src: "/img/logo2.png",
-								alt: "Sounds Good2",
+								src: "/img/left/3.png",
+								class: "left",
+								alt: "One percent",
 								animation: {
 									direction: "bottom",
 									transition: "opacity",
@@ -411,8 +427,9 @@
 						[
 							{
 								type: "image",
-								src: "/img/logo2.png",
-								alt: "Sounds Good2",
+								src: "/img/left/4.png",
+								class: "left",
+								alt: "Seven",
 								animation: {
 									direction: "bottom",
 									transition: "opacity",
@@ -452,8 +469,9 @@
 						[
 							{
 								type: "image",
-								src: "/img/logo2.png",
-								alt: "Sounds Good2",
+								src: "/img/left/5.png",
+								class: "left",
+								alt: "One over four",
 								animation: {
 									direction: "bottom",
 									transition: "opacity",
@@ -493,8 +511,9 @@
 						[
 							{
 								type: "image",
-								src: "/img/logo2.png",
-								alt: "Sounds Good2",
+								src: "/img/left/6.png",
+								class: "left",
+								alt: "One over six",
 								animation: {
 									direction: "bottom",
 									transition: "opacity",
@@ -529,7 +548,7 @@
 				},
 				{
 					type: "single",
-					background: "orange",
+					background: "/img/bg/7.jpg",
 					data: [
 						{
 							type: "title",
@@ -551,7 +570,7 @@
 							type: "button",
 							style: "dark",
 							link: "#",
-							text: "Scarica il programma",
+							text: "Leggi il programma",
 							animation: {
 								direction: "bottom",
 								transition: "opacity",
@@ -579,6 +598,7 @@
 				"/img/bg/4.jpg",
 				"/img/bg/5.jpg",
 				"/img/bg/6.jpg",
+				"/img/bg/7.jpg",
 				"/img/bg/8.jpg",
 				"/img/logo.png",
 			];
@@ -739,9 +759,8 @@
 	<body>
 		<div id="header" class="hide">
 			<img src="./img/logo_svolta.png" alt="Svoltastudenti" style="transition-delay: 0s;" class="logo siteLogo">
-			<a href="https://svoltastudenti.it/it/" style="transition-delay: 500ms;" class="website-link">
-				<span>Vai agli articoli</span>
-				<img src="./img/website.svg" alt="Visualizza articoli" class="website">
+			<a href="https://svoltastudenti.it/it/" style="transition-delay: 500ms;">
+				<img src="./img/website.png" alt="Visualizza articoli" class="website">
 			</a>
 		</div>
 		<div class="page" id="pagePrev">
