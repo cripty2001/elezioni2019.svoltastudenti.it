@@ -1,0 +1,853 @@
+<html>
+	<head>
+		<title>
+			SVOLTASTUDENTI | Elezioni 2019
+		</title>
+		<style>
+			html, body {
+				padding: 0px;
+				margin: 0px;
+				font-family: 'APompadourBoldSample';  
+				background-color: #A54200;
+				touch-action: pan-x pan-y;
+			}
+
+			@font-face {
+				font-family: 'APompadourBoldSample';
+				src:  url('./fonts/APompadourBoldSample/APompadourBoldSample.ttf.woff') format('woff'),
+				url('./fonts/APompadourBoldSample/APompadourBoldSample.ttf.svg#APompadourBoldSample') format('svg'),
+				url('./fonts/APompadourBoldSample/APompadourBoldSample.ttf.eot'),
+				url('./fonts/APompadourBoldSample/APompadourBoldSample.eot?#iefix') format('embedded-opentype'); 
+				font-weight: normal;
+				font-style: normal;
+				font-display: fallback;
+			}
+
+			a {
+				color: #FFF;
+				text-decoration: none;
+			}
+
+			#header {
+				width: 90%;
+				left: 5%;
+				right: 5%;
+				top: 2%;
+				position: fixed;
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+				z-index: 1;
+			}
+
+			#header > * {
+				opacity: 1;
+			}
+
+			#header.hide > * {
+				opacity: 0;
+			}
+
+			#header > * {
+				transition-property: opacity;
+				transition-duration: 1s;
+			}
+
+			.logo {
+				width: 80%;
+				max-width: 500px;
+			}
+
+			.siteLogo {
+				height: 100%;
+				width: 50%;
+				max-width: 215px;
+			}
+
+			.website {
+				max-height: 25px;
+			}
+
+			.nextImage {
+				max-height: 50px;
+			}
+
+			.page {
+				height: 100%;
+				width: 100%;
+				display: flex;
+				position: fixed;
+				flex-direction: column;
+				align-items: stretch;
+				justify-content: center;
+
+				background-origin: padding-box;
+				background-position: center;
+				background-repeat: no-repeat;
+				background-size: cover;
+				background-color: gray;
+
+				text-align: center;
+			}
+
+			#pageCurrent {
+				top: 0vh;
+				transition: none;
+			}
+
+			#pageCurrent.animateNext {
+				top: -100vh;
+				transition: top 500ms;
+			}
+
+			#pageCurrent.animatePrev {
+				top: 100vh;
+				transition: top 500ms;
+			}
+
+			#pageNext {
+				bottom: -100vh;
+				pointer-events: none;
+			}
+
+			#pageNext.animate {
+				bottom: 0vh;
+				transition: bottom 500ms;
+			}
+
+			#pagePrev {
+				top: -100vh;
+				pointer-events: none;
+			}
+
+			#pagePrev.animate {
+				top: 0vh;
+				transition: top 500ms;
+			}
+
+			#cover {
+				background-color: #f60;
+				opacity: 0;
+				pointer-events: none;
+				transition: opacity 1s;
+				transition-delay: 1s; 
+			}
+
+			#cover.animate {
+				opacity: 1;
+				pointer-events: initial;
+				transition: opacity 1s;
+			}
+
+			.gradient {
+				z-index: 0;
+				height: 100%;
+				width: 100%;
+				position: absolute;
+			}
+
+			.animProp-dirbottom {
+				position: relative;
+				bottom: -20vh;
+				opacity: 0;
+			}
+
+			.animProp-dirbottom.animate {
+				opacity: 1;
+				bottom: 0vh;
+				transition-property: opacity, bottom;
+			}
+
+			.animDur-500ms {
+				transition-duration: 500ms;
+			}
+
+			.animDur-1s {
+				transition-duration: 1s;
+			}
+
+			.animDel-500ms {
+				transition-delay: 500ms;
+			}
+
+			.animDel-1s {
+				transition-delay: 1s;
+			}
+
+			.animDel-1500ms {
+				transition-delay: 1s;
+			}
+
+			.animDel-2s {
+				transition-delay: 2s;
+			}
+
+			.content {
+				z-index: 1;
+			}
+
+			.next {
+				z-index: 2;
+				position: absolute;
+				bottom: 10vh;
+				left: 0px;
+				right: 0px;
+				text-align: center;
+				opacity: 0;
+			}
+
+			.next.animate {
+				/*transition-delay: 2s;
+				transition-property: opacity;
+				transition-duration: 2s;*/
+				opacity: 1;
+			}
+
+			.row {
+				display: flex;
+				flex-direction: column;
+			}
+
+			.row-cell-l img {
+				width: 82%;
+				max-width: 500px;
+			}
+
+			.title {
+				font-weight: bold;
+				color: white;
+				border-bottom: 5px solid white;
+				padding-bottom: 1vh;
+			}
+
+			.text {
+				color: white;
+			}
+
+			.btn {
+				text-decoration: none;
+				color: initial;
+				font-weight: bold;
+				display: inline-block;
+				flex-shrink: 0;
+				flex-grow: 0;
+				cursor: pointer;
+			}
+
+			.btn-dark {
+				background-color: #f60;
+				color: white;
+			}
+
+			.btn-light {
+				border: 1px solid #f60;
+				color: #f60;
+			}
+
+			.title {
+				margin-bottom: 30px;
+				font-size: x-large;
+				font-size: xx-large;
+			}
+
+			.text {
+				font-size: x-large;
+				margin-bottom: 10px;
+			}
+
+			.btn {
+				font-size: large;
+				padding: 10px 20px;
+				border: 1px solid white;
+			}
+
+			@media all and (min-width: 720px){
+				.row {
+					display: flex;
+					flex-direction: row;
+				}
+
+				.row-cell {
+					width: 50%;
+					margin-left: 1vw;
+					margin-right: 1vw;
+				}
+
+				.row-cell-l {
+					text-align: right;
+				}
+
+				.row-cell-r {
+					text-align: left;
+					padding: 50px;
+				}
+
+				.title {
+					margin-bottom: 3vmin;
+					font-size: 6vmin;
+				}
+
+				.text {
+					font-size: 2vmin;
+					margin-bottom: 1vmin;
+				}
+
+				.btn {
+					font-size: 4vmin;
+				}
+			}
+		</style>
+		<script>
+			var slides = [
+				{
+					type: "single",
+					background: "/img/bg/1.jpg",
+					gradient: "linear-gradient(45deg, rgba(0, 74, 193, 0.6) 0%, rgba(255, 101, 1, 0.6) 100%)",
+					data: [
+						{
+							type: "image",
+							src: "/img/left/1.png",
+							alt: "Sounds Good",
+							class: "logo",
+							animation: {
+								direction: "bottom",
+								transition: "opacity",
+								duration: "1s",
+								delay: "2s"
+							}
+						}
+					]
+				},
+				{
+					type: "double",
+					background: "/img/bg/2.jpg",
+					gradient: "linear-gradient(45deg, rgba(0, 96, 27, 0.6) 0%, rgba(225, 0, 25, 0.6) 100%)",
+					data: [
+						[
+							{
+								type: "image",
+								src: "/img/left/2.png",
+								alt: "One over twentyfive",
+								animation: {
+									direction: "bottom",
+									transition: "opacity",
+									duration: "1s",
+									delay: "500ms"
+								}
+							}
+						],
+						[
+							{
+								type: "title",
+								text: "Studenti in scambio",
+								animation: {
+									direction: "bottom",
+									transition: "opacity",
+									duration: "1s",
+									delay: "1s"
+								}
+							},
+							{
+								type: "text",
+								text: "in uscita, in media ogni anno al Politecnico di Milano. Non sono un po’ pochi? Crediamo le esperienze all’estero siano un aspetto fondamentale per la vita formativa di uno studente universitario ed è per questo di fondamentale importanza abbattere gli ostacoli che oggi professori all’antica, amministrazione e burocrazia pongono, più o meno volontariamente, a danno degli studenti.",
+								animation: {
+									direction: "bottom",
+									transition: "opacity",
+									duration: "1s",
+									delay: "1s"
+								}
+							}
+						]
+					]
+				},
+				{
+					type: "double",
+					background: "/img/bg/3.jpg",
+					gradient: "linear-gradient(45deg, rgba(249, 158, 255, 0.6) 0%, rgba(225, 246, 0, 0.6) 100%)",
+					data: [
+						[
+							{
+								type: "image",
+								src: "/img/left/3.png",
+								alt: "One percent",
+								animation: {
+									direction: "bottom",
+									transition: "opacity",
+									duration: "1s",
+									delay: "500ms"
+								}
+							}
+						],
+						[
+							{
+								type: "title",
+								text: "Del budget per lo sport",
+								animation: {
+									direction: "bottom",
+									transition: "opacity",
+									duration: "1s",
+									delay: "1s"
+								}
+							},
+							{
+								type: "text",
+								text: "e per le attività studentesche culturali autorganizzate, è destinato annualmente. La vita universitaria non deve essere solo studio, ma formare persone a 360 gradi. Per questo crediamo serva un maggiore sforza da parte del Politecnico per arricchire l’esperienza di vita degli anni universitari.",
+								animation: {
+									direction: "bottom",
+									transition: "opacity",
+									duration: "1s",
+									delay: "1s"
+								}
+							}
+						]
+					]
+				},
+				{
+					type: "double",
+					background: "/img/bg/4.jpg",
+					gradient: "linear-gradient(45deg, rgba(248, 129, 255, 0.6) 0%, rgba(0, 252, 255, 0.6) 100%)",
+					data: [
+						[
+							{
+								type: "image",
+								src: "/img/left/4.png",
+								alt: "Seven",
+								animation: {
+									direction: "bottom",
+									transition: "opacity",
+									duration: "1s",
+									delay: "500ms"
+								}
+							}
+						],
+						[
+							{
+								type: "title",
+								text: "Anni per laurearsi",
+								animation: {
+									direction: "bottom",
+									transition: "opacity",
+									duration: "1s",
+									delay: "1s"
+								}
+							},
+							{
+								type: "text",
+								text: "è il tempo speso da uno studente in media in un percorso quinquennale al Politecnico di Milano. Non sono un po’ troppi? Crediamo che una formazione sia di qualità non soltanto con contenuti di alto livello, ma quando l’università mette a disposizione dello studente ogni strumento possibile per non perdere tempo e massimizzare l’efficacia dello studio. Solo così possiamo competere con i nostri colleghi internazionali che in genere completano il percorso in tempi minori, spesso con una formazione di minor qualità.",
+								animation: {
+									direction: "bottom",
+									transition: "opacity",
+									duration: "1s",
+									delay: "1s"
+								}
+							}
+						]
+					]
+				},
+				{
+					type: "double",
+					background: "/img/bg/5.jpg",
+					gradient: "linear-gradient(45deg, rgba(225, 0, 25, 0.6) 0%, rgba(0, 96, 27, 0.6) 100%)",
+					data: [
+						[
+							{
+								type: "image",
+								src: "/img/left/5.png",
+								alt: "One over four",
+								animation: {
+									direction: "bottom",
+									transition: "opacity",
+									duration: "1s",
+									delay: "500ms"
+								}
+							}
+						],
+						[
+							{
+								type: "title",
+								text: "Studenti internazionali",
+								animation: {
+									direction: "bottom",
+									transition: "opacity",
+									duration: "1s",
+									delay: "1s"
+								}
+							},
+							{
+								type: "text",
+								text: "iscritti alle lauree magistrali al Politecnico di Milano. Forse più di quanti pensavi? L’internazionalità è quasi un’esclusiva del Politecnico su tutto il territorio italiano e ci arricchisce ogni giorno creando connessioni e confronto con colleghi da tutto il mondo. Per questo il Politecnico deve investire ancora di più per agevolare l’integrazione e la partecipazione di questi studenti alla vita dell’ateneo.",
+								animation: {
+									direction: "bottom",
+									transition: "opacity",
+									duration: "1s",
+									delay: "1s"
+								}
+							}
+						]
+					]
+				},
+				{
+					type: "double",
+					background: "/img/bg/6.jpg",
+					gradient: "linear-gradient(45deg, rgba(0, 252, 255, 0.6) 0%, rgba(248, 129, 255, 0.6) 100%)",
+					data: [
+						[
+							{
+								type: "image",
+								src: "/img/left/6.png",
+								alt: "One over six",
+								animation: {
+									direction: "bottom",
+									transition: "opacity",
+									duration: "1s",
+									delay: "500ms"
+								}
+							}
+						],
+						[
+							{
+								type: "title",
+								text: "Studenti hanno votato",
+								animation: {
+									direction: "bottom",
+									transition: "opacity",
+									duration: "1s",
+									delay: "1s"
+								}
+							},
+							{
+								type: "text",
+								text: "alle scorse elezioni studentesche. Riesci a pensare a 5 tuoi compagni che non voteranno? Una partecipazione così bassa da portare pochissime energie ai vari tavoli in cui il Politecnico, ogni giorno, affronta i problemi degli studenti e prova a combattere la sfida dell’innovazione e del confronto con gli altri atenei di tutto il mondo. ",
+								animation: {
+									direction: "bottom",
+									transition: "opacity",
+									duration: "1s",
+									delay: "1s"
+								}
+							}
+						]
+					]
+				},
+				{
+					type: "single",
+					background: "/img/bg/7.jpg",
+					gradient: "none",
+					data: [
+						{
+							type: "title",
+							text: "I numeri sono fatti per essere cambiati<br /><br />Aiutaci a farlo",
+							animation: {
+								direction: "bottom",
+								transition: "opacity",
+								duration: "1s",
+								delay: "1s"
+							}
+						}
+					]
+				},
+				{
+					type: "single",
+					background: "/img/bg/8.jpg",
+					gradient: "linear-gradient(45deg, rgba(255, 101, 1, 0.6) 0%, rgba(0, 74, 193, 0.6) 100%)",
+					data: [
+						{
+							type: "button",
+							style: "dark",
+							link: "#",
+							text: "Leggi il programma",
+							animation: {
+								direction: "bottom",
+								transition: "opacity",
+								duration: "1s",
+								delay: "1s"
+							}
+						},
+						{
+							type: "text",
+							text: "oppure scopri il programma nazionale",
+							animation: {
+								direction: "bottom",
+								transition: "opacity",
+								duration: "1s",
+								delay: "2s"
+							}
+						}
+					]
+				}
+			];
+			var preloading = [
+				"/img/bg/1.jpg",
+				"/img/bg/2.jpg",
+				"/img/bg/3.jpg",
+				"/img/bg/4.jpg",
+				"/img/bg/5.jpg",
+				"/img/bg/6.jpg",
+				"/img/bg/7.jpg",
+				"/img/bg/8.jpg",
+				"/img/left/1.png",
+				"/img/left/2.png",
+				"/img/left/3.png",
+				"/img/left/4.png",
+				"/img/left/5.png",
+				"/img/left/6.png",
+				"/img/left/7.png",
+				"/img/left/8.png"
+			];
+			var current = 0;
+			var loading = false;
+			var touchPoint = {
+				x: 0,
+				y: 0
+			};
+
+			function startAnimation(){
+				setTimeout(function(){
+					document.getElementById("header").classList.remove("hide");
+					loadSlide();
+				}, 500);
+			}
+
+			function loadSlide(){
+				var toReturn = "";
+				var data = slides[current];
+
+				switch (data.type){
+					case "single":
+						toReturn = data.data.map(getComponent);
+						break;
+					case "double":
+						toReturn = '<div class="row"><div class="row-cell row-cell-l">' + data.data[0].map(getComponent) + '</div><div class="row-cell row-cell-r">' + data.data[1].map(getComponent) + '</div></div>';
+						break;
+					default:
+						// Nothing
+				}
+
+				document.querySelector("#pageCurrent > .content").innerHTML = toReturn;
+
+				setTimeout(function(){
+					document.querySelectorAll("#pageCurrent > .content *").forEach(function(item) {
+						item.classList.add("animate");
+					});
+					document.querySelector("#pageCurrent > .next").classList.add("animate");
+				}, 100);
+
+				setTimeout(function(){
+					loading = false;
+				}, 3000);
+			}
+
+			function getComponent(data){
+				var toReturn = "";
+
+				switch (data.type){
+					case "image":
+						toReturn = '<img src=".' + data.src + '" alt="' + data.alt + '" class="' + getAnimation(data.animation) + ' ' + data.class + '">'
+						break;
+					case "title":
+						toReturn = '<div class="title ' + getAnimation(data.animation) + '">' + data.text + '</div>';
+						break;
+					case "text":
+						toReturn = '<div class="text ' + getAnimation(data.animation) + '">' + data.text + '</div>';
+						break;
+					case "button":
+						toReturn = '<a href="' + data.link +'" class="btn btn-' + data.style + ' ' + getAnimation(data.animation) + '">' + data.text + '</a>';
+						break;
+					default:
+						// Nothing
+				}
+
+				return toReturn;
+			}
+
+			function getAnimation(data){
+				return "";
+				return 'animProp-dir' + data.direction + ' animDur-' + data.duration + ' animDel-' + data.delay;
+			}
+
+			function nextSlide(){
+				if (loading === false){
+					loading = true;
+
+					current++;
+
+					if (current < slides.length){
+						document.querySelector("#pageNext").style.backgroundImage = "url('." + slides[current].background + "')";
+						document.getElementById("pageCurrent").classList.add("animateNext");
+						document.getElementById("pageNext").classList.add("animate");
+
+						document.querySelector("#pageNext .gradient").style.background = slides[current].gradient;
+						setTimeout(function() {
+							document.querySelector("#pageCurrent").style.backgroundImage = "url('." + slides[current].background + "')";
+							document.querySelector("#pageCurrent > .content").innerHTML = "";
+							document.querySelector("#pageCurrent .gradient").style.background = slides[current].gradient;
+							document.getElementById("pageCurrent").classList.remove("animateNext");
+							document.getElementById("pageNext").classList.remove("animate");
+							document.querySelector("#pageCurrent > .next").classList.remove("animate");
+							loadSlide();
+						}, 600);
+					}
+					else {
+						loading = false;
+						current = slides.length - 1;
+						document.querySelector("#pageCurrent > .next > #nextLink").style.display = "none";
+						document.querySelector("#pageCurrent > .next > #topLink").style.display = "initial";
+					}
+				}
+			}
+
+			function prevSlide(){
+				if (loading === false){
+					loading = true;
+
+					current--;
+
+					if (current >= 0){
+						document.querySelector("#pagePrev").style.backgroundImage = "url('." + slides[current].background + "')";
+						document.getElementById("pageCurrent").classList.add("animatePrev");
+						document.getElementById("pagePrev").classList.add("animate");
+						document.querySelector("#pagePrev .gradient").style.background = slides[current].gradient;
+						setTimeout(function() {
+
+							document.querySelector("#pageCurrent > .next > #nextLink").style.display = "initial";
+							document.querySelector("#pageCurrent > .next > #topLink").style.display = "none";
+							document.querySelector("#pageCurrent").style.backgroundImage = "url('." + slides[current].background + "')";
+							document.querySelector("#pageCurrent > .content").innerHTML = "";
+							document.querySelector("#pageCurrent .gradient").style.background = slides[current].gradient;
+							document.getElementById("pageCurrent").classList.remove("animatePrev");
+							document.getElementById("pagePrev").classList.remove("animate");
+							document.querySelector("#pageCurrent > .next").classList.remove("animate");
+							loadSlide();
+						}, 600);
+					}
+					else {
+						loading = false;
+						current = 0;
+					}
+				}
+			}
+
+			function backToTop(){
+				if (loading === false){
+					loading = true;
+
+					current = 0;
+
+					document.getElementById("cover").classList.add("animate");
+					setTimeout(function(){
+						document.querySelector("#pageCurrent > .next > #nextLink").style.display = "initial";
+						document.querySelector("#pageCurrent > .next > #topLink").style.display = "none";
+						loadSlide();
+						document.getElementById("cover").classList.remove("animate");
+					}, 1000);
+				}
+			}
+
+			function preload(){
+				preloading.forEach(function(item){
+					fetch("." + item)
+					.then(function(){
+						// Nothing, just preloading
+					});
+				});
+			}
+
+			function touchHandler(e, type){
+				console.log(e);
+
+				if (e.touches.length == 1){
+					var point = {
+						x: 0,
+						y: 0
+					};
+					console.log(point);
+					if(e.targetTouches) {
+						point.x = e.targetTouches[0].clientX;
+						point.y = e.targetTouches[0].clientY;
+					} else {
+						point.x = e.clientX;
+						point.y = e.clientY;
+					}
+
+					if (type == "start"){
+						touchPoint = point;
+					}
+					else {
+						if (
+							Math.absolute(touchPoint.y - point.y) > 
+							Math.absolute(touchPoint.x - point.x)
+						){
+							if ((touchPoint.y - point.y) > 0){
+								prevSlide();
+							}
+							else {
+								nextSlide();
+							}
+						}
+					}
+				}
+			}
+
+			document.addEventListener("DOMContentLoaded", function(event){
+				preload();
+				document.querySelector("#pageCurrent .gradient").style.background = slides[0].gradient;
+				document.getElementById("pageCurrent").style.backgroundImage = "url('." + slides[0].background + "')";
+				document.querySelector("#pageCurrent > .next > #topLink").style.display = "none";
+
+				startAnimation();
+				loadSlide();
+
+				// "Scroll" event listeners
+				document.addEventListener("wheel", function(e){if (e.deltaY > 0) {nextSlide();}});
+				document.addEventListener("keydown", function(e){if (e.keyCode == 40) {nextSlide();}});
+				document.addEventListener("keydown", function(e){if (e.keyCode == 39) {nextSlide();}});
+
+				document.addEventListener("wheel", function(e){if (e.deltaY < 0) {prevSlide();}});
+				document.addEventListener("keydown", function(e){if (e.keyCode == 37) {prevSlide();}});
+				document.addEventListener("keydown", function(e){if (e.keyCode == 38) {prevSlide();}});
+
+				document.addEventListener('touchstart', function(e){touchHandler(e, "start")});
+				document.addEventListener('touchend', function(e){touchHandler(e, "end")});
+			});
+		</script>
+		<meta name="application-name" content="SVOLTASTUDENTI | Elezioni 2019">
+		<meta name="apple-mobile-web-app-title" content="SVOLTASTUDENTI | Elezioni 2019">
+		<meta name="theme-color" content="#f60">
+		<meta name="msapplication-navbutton-color" content="#f60">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="SVOLTASTUDENTI | Elezioni 2019">
+		<meta name="keywords" content="Svoltastudenti, Elezioni 2019 Polimi">
+		<meta name="author" content="Svoltastudenti">
+	</head>
+	<body>
+		<div id="header" class="hide">
+			<img src="./img/logo_svolta.png" alt="Svoltastudenti" style="transition-delay: 0s;" class="logo siteLogo">
+			<a href="https://svoltastudenti.it/it/" style="transition-delay: 500ms;">
+				<img src="./img/website.png" alt="Visualizza articoli" class="website">
+			</a>
+		</div>
+		<div class="page" id="pagePrev">
+			<div class="gradient"></div>
+		</div>
+		<div class="page" id="pageCurrent">
+			<div class="gradient"></div>
+			<div class="content">
+				<!-- Automatically filled -->
+			</div>
+			<div class="next">
+				<a href="javascript:nextSlide()" id="nextLink">
+					<img src="./img/next.svg" alt="Next Slide" class="nextImage">
+				</a>
+				<a href="javascript:backToTop()" id="topLink">
+					<img src="./img/top.svg" alt="Back to Top" class="nextImage">
+				</a>
+			</div>
+		</div>
+		<div class="page" id="pageNext">
+			<div class="gradient"></div>
+		</div>
+		<div class="page" id="cover">
+
+		</div>
+	</body>
+</html>
