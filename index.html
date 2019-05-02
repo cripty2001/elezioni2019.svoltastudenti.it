@@ -519,34 +519,31 @@
 			function touchHandler(e, type){
 				console.log(e);
 
-				if (e.touches.length == 1){
-					var point = {
-						x: 0,
-						y: 0
-					};
-					console.log(point);
-					if(e.targetTouches) {
-						point.x = e.targetTouches[0].clientX;
-						point.y = e.targetTouches[0].clientY;
-					} else {
-						point.x = e.clientX;
-						point.y = e.clientY;
-					}
+				if (e.touches && e.touches.length > 0){
+					list = e.touches
+				}
+				else if (e.changedTouches && e.changedTouches.length > 0){
+					list = e.changedTouches;
+				}
 
+				console.log(list);
+				if (list && list.length == 1 ){
+					var point = {
+						x: list[0].clientX,
+						y: list[0].clientY
+					};
+
+					console.log(point);
 					if (type == "start"){
 						touchPoint = point;
 					}
 					else {
-						if (
-							Math.absolute(touchPoint.y - point.y) >
-							Math.absolute(touchPoint.x - point.x)
-						){
-							if ((touchPoint.y - point.y) > 0){
-								prevSlide();
-							}
-							else {
-								nextSlide();
-							}
+						console.log("test");
+						if ((touchPoint.y - point.y) < 0){
+							prevSlide();
+						}
+						else {
+							nextSlide();
 						}
 					}
 				}
@@ -607,10 +604,6 @@
 					</a>
 				</div>
 			</div>
-		</div>
-
-		<div class="page" id="cover">
-
 		</div>
 	</body>
 </html>
