@@ -583,6 +583,10 @@
 			];
 			var current = 0;
 			var loading = false;
+			var touchPoint = {
+				x: 0,
+				y: 0
+			};
 
 			function startAnimation(){
 				setTimeout(function(){
@@ -644,6 +648,7 @@
 			}
 
 			function getAnimation(data){
+				return "";
 				return 'animProp-dir' + data.direction + ' animDur-' + data.duration + ' animDel-' + data.delay;
 			}
 
@@ -734,6 +739,42 @@
 				});
 			}
 
+			function touchHandler(e, type){
+				console.log(e);
+
+				if (e.touches.length == 1){
+					var point = {
+						x: 0,
+						y: 0
+					};
+					console.log(point);
+					if(e.targetTouches) {
+						point.x = e.targetTouches[0].clientX;
+						point.y = e.targetTouches[0].clientY;
+					} else {
+						point.x = e.clientX;
+						point.y = e.clientY;
+					}
+
+					if (type == "start"){
+						touchPoint = point;
+					}
+					else {
+						if (
+							Math.absolute(touchPoint.y - point.y) > 
+							Math.absolute(touchPoint.x - point.x)
+						){
+							if ((touchPoint.y - point.y) > 0){
+								prevSlide();
+							}
+							else {
+								nextSlide();
+							}
+						}
+					}
+				}
+			}
+
 			document.addEventListener("DOMContentLoaded", function(event){
 				preload();
 				document.querySelector("#pageCurrent .gradient").style.background = slides[0].gradient;
@@ -751,6 +792,9 @@
 				document.addEventListener("wheel", function(e){if (e.deltaY < 0) {prevSlide();}});
 				document.addEventListener("keydown", function(e){if (e.keyCode == 37) {prevSlide();}});
 				document.addEventListener("keydown", function(e){if (e.keyCode == 38) {prevSlide();}});
+
+				document.addEventListener('touchstart', function(e){touchHandler(e, "start")});
+				document.addEventListener('touchend', function(e){touchHandler(e, "end")});
 			});
 		</script>
 		<meta name="application-name" content="SVOLTASTUDENTI | Elezioni 2019">
