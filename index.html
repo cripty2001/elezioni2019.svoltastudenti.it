@@ -26,7 +26,7 @@
 				position: fixed;
 				display: flex;
 				flex-direction: row;
-				justify-content: space-between;
+          justify-content: space-between;
 				z-index: 1;
 			}
 
@@ -127,35 +127,6 @@
 				position: absolute;
 			}
 
-			.gradient.blueorange {
-				background: linear-gradient(45deg, rgba(0, 74, 193, 0.6) 0%, rgba(255, 101, 1, 0.6) 100%);
-			}
-
-			.gradient.redgreen {
-				background: linear-gradient(45deg, rgba(225, 0, 25, 0.6) 0%, rgba(0, 96, 27, 0.6) 100%);
-			}
-
-			.gradient.greenred {
-				background: linear-gradient(45deg, rgba(0, 96, 27, 0.6) 0%, rgba(225, 0, 25, 0.6) 100%);
-			}
-
-			.gradient.pinkyellow {
-				background: linear-gradient(45deg, rgba(249, 158, 255, 0.6) 0%, rgba(225, 246, 0, 0.6) 100%);
-			}
-
-			.gradient.yellowpink {
-				background: linear-gradient(45deg, rgba(225, 246, 0, 0.6) 0%, rgba(249, 158, 255, 0.6) 100%);
-			}
-
-			.gradient.pinkcyan {
-				background: linear-gradient(45deg, rgba(248, 129, 255, 0.6) 0%, rgba(0, 252, 255, 0.6) 100%);
-			}
-			}
-
-			.gradient.cyanpink {
-				background: linear-gradient(45deg, rgba(0, 252, 255, 0.6) 0%, rgba(248, 129, 255, 0.6) 100%);
-			}
-
 			.animProp-dirbottom {
 				position: relative;
 				bottom: -20vh;
@@ -199,7 +170,7 @@
 			.next {
 				z-index: 2;
 				position: absolute;
-				bottom: 150px;
+				bottom: 10vh;
 				left: 0px;
 				right: 0px;
 				text-align: center;
@@ -207,7 +178,7 @@
 			}
 
 			.next.animate {
-				transition-delay: 4s;
+				transition-delay: 2s;
 				transition-property: opacity;
 				transition-duration: 2s;
 				opacity: 1;
@@ -321,6 +292,7 @@
 				{
 					type: "single",
 					background: "/img/bg/1.jpg",
+					gradient: "linear-gradient(45deg, rgba(0, 74, 193, 0.6) 0%, rgba(255, 101, 1, 0.6) 100%)",
 					data: [
 						{
 							type: "image",
@@ -339,6 +311,7 @@
 				{
 					type: "double",
 					background: "/img/bg/2.jpg",
+					gradient: "linear-gradient(45deg, rgba(225, 0, 25, 0.6) 0%, rgba(0, 96, 27, 0.6) 100%)",
 					data: [
 						[
 							{
@@ -357,7 +330,7 @@
 						[
 							{
 								type: "title",
-								text: "studenti in scambio",
+								text: "Studenti in scambio",
 								animation: {
 									direction: "bottom",
 									transition: "opacity",
@@ -367,7 +340,7 @@
 							},
 							{
 								type: "text",
-								text: "blablabla",
+								text: "in uscita, in media, al Politecnico di Milano.",
 								animation: {
 									direction: "bottom",
 									transition: "opacity",
@@ -381,6 +354,7 @@
 				{
 					type: "double",
 					background: "/img/bg/3.jpg",
+					gradient: "linear-gradient(45deg, rgba(249, 158, 255, 0.6) 0%, rgba(225, 246, 0, 0.6) 100%)",
 					data: [
 						[
 							{
@@ -399,7 +373,7 @@
 						[
 							{
 								type: "title",
-								text: "studenti in scambio",
+								text: "Del budget per lo sport",
 								animation: {
 									direction: "bottom",
 									transition: "opacity",
@@ -423,6 +397,7 @@
 				{
 					type: "double",
 					background: "/img/bg/4.jpg",
+					gradient: "linear-gradient(45deg, rgba(248, 129, 255, 0.6) 0%, rgba(0, 252, 255, 0.6) 100%)",
 					data: [
 						[
 							{
@@ -465,6 +440,7 @@
 				{
 					type: "double",
 					background: "/img/bg/5.jpg",
+					gradient: "aaa",
 					data: [
 						[
 							{
@@ -483,7 +459,7 @@
 						[
 							{
 								type: "title",
-								text: "studenti in scambio",
+								text: "Anni per laurearsi",
 								animation: {
 									direction: "bottom",
 									transition: "opacity",
@@ -507,6 +483,7 @@
 				{
 					type: "double",
 					background: "/img/bg/6.jpg",
+					gradient: "linear-gradient(45deg, rgba(0, 252, 255, 0.6) 0%, rgba(248, 129, 255, 0.6) 100%)",
 					data: [
 						[
 							{
@@ -525,7 +502,49 @@
 						[
 							{
 								type: "title",
-								text: "studenti in scambio",
+								text: "Studenti internazionali",
+								animation: {
+									direction: "bottom",
+									transition: "opacity",
+									duration: "1s",
+									delay: "1s"
+								}
+							},
+							{
+								type: "text",
+								text: "blablabla",
+								animation: {
+									direction: "bottom",
+									transition: "opacity",
+									duration: "1s",
+									delay: "1s"
+								}
+							}
+						]
+					]
+				},
+				{
+					type: "double",
+					background: "/img/bg/6.jpg",
+					gradient: "linear-gradient(45deg, rgba(0, 252, 255, 0.6) 0%, rgba(248, 129, 255, 0.6) 100%)",
+					data: [
+						[
+							{
+								type: "image",
+								src: "/img/logo2.png",
+								alt: "Sounds Good2",
+								animation: {
+									direction: "bottom",
+									transition: "opacity",
+									duration: "1s",
+									delay: "500ms"
+								}
+							}
+						],
+						[
+							{
+								type: "title",
+								text: "Studenti hanno votato",
 								animation: {
 									direction: "bottom",
 									transition: "opacity",
@@ -549,6 +568,7 @@
 				{
 					type: "single",
 					background: "/img/bg/7.jpg",
+					gradient: "none",
 					data: [
 						{
 							type: "title",
@@ -565,6 +585,7 @@
 				{
 					type: "single",
 					background: "/img/bg/8.jpg",
+					gradient: "linear-gradient(45deg, rgba(0, 74, 193, 0.6) 0%, rgba(255, 101, 1, 0.6) 100%)",
 					data: [
 						{
 							type: "button",
@@ -600,7 +621,7 @@
 				"/img/bg/6.jpg",
 				"/img/bg/7.jpg",
 				"/img/bg/8.jpg",
-				"/img/logo.png",
+				"/img/logo.png"
 			];
 			var current = 0;
 			var loading = false;
@@ -627,15 +648,19 @@
 						// Nothing
 				}
 
-				document.querySelector("#pageCurrent > .content").innerHTML = toReturn;
+				document.querySelector("#pageCurrent > .content").innerHTML = toReturn;	document.querySelector("#pageCurrent .gradient").style.background = data.gradient;
 				setTimeout(function(){
 					document.querySelectorAll("#pageCurrent > .content *").forEach(function(item) {
 						item.classList.add("animate");
 					});
 					document.querySelector("#pageCurrent > .next").classList.add("animate");
 
-					loading = false;
+
 				}, 100);
+
+				setTimeout(function(){
+        loading = false;
+    }, 3000);
 			}
 
 			function getComponent(data){
