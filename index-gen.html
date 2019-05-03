@@ -141,11 +141,11 @@
 			}
 
 			.next {
-				bottom: 75px;
+				bottom: 5px;
 			}
 
 			.prev {
-				top: 75px;
+				top: 55px;
 			}
 
 			.row {
@@ -172,12 +172,16 @@
 
 			.btn {
 				text-decoration: none;
-				color: initial;
 				font-weight: bold;
 				display: inline-block;
 				flex-shrink: 0;
 				flex-grow: 0;
 				cursor: pointer;
+				font-size: large;
+				padding: 10px 20px;
+				border: 1px solid white;
+				background-color: #f60;
+				color: white;
 			}
 
 			.title {
@@ -190,14 +194,6 @@
 				font-size: 4.5vw;
 				text-align: justify;
 				margin-bottom: 1vmin;
-			}
-
-			.btn {
-				font-size: large;
-				padding: 10px 20px;
-				border: 1px solid white;
-				background-color: #f60;
-				color: white;
 			}
 
 			@media all and (min-width: 720px){
@@ -583,9 +579,11 @@
 			document.addEventListener("DOMContentLoaded", function(event){
 				loadSlides();
 
-				document.querySelectorAll("#slides .page").forEach(function(e){
-					e.style.backgroundImage = "url('./img/bg/"+e.dataset.id+".jpg')"
-				});
+				setTimeout(function(){
+					document.querySelectorAll("#slides .page").forEach(function(e){
+						e.style.backgroundImage = "url('./img/bg/"+e.dataset.id+".jpg')"
+					});
+				}, 1000);
 
 				document.querySelectorAll("#slides .page").forEach(function(page) {
 					// "Scroll" event listeners
