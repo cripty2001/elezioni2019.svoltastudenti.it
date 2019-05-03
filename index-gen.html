@@ -227,8 +227,47 @@
 					font-size: 4vmin;
 				}
 			}
+
+			#slides.backTop .page {
+				top: 0vh;
+				transition-property: top;
+				transition-duration: 1s;
+			}
+
+			#slides.backTop .page[data-id="7"]{
+				transition-delay: 0ms;
+			}
+
+			#slides.backTop .page[data-id="6"]{
+				transition-delay: 200ms;
+			}
+
+			#slides.backTop .page[data-id="5"]{
+				transition-delay: 400ms;
+			}
+
+			#slides.backTop .page[data-id="4"]{
+				transition-delay: 600ms;
+			}
+
+			#slides.backTop .page[data-id="3"]{
+				transition-delay: 800ms;
+			}
+
+			#slides.backTop .page[data-id="2"]{
+				transition-delay: 1000ms;
+			}
+
+			#slides.backTop .page[data-id="1"]{
+				transition-delay: 1200ms;
+			}
+
+			#slides.backTop .page[data-id="0"]{
+				transition-delay: 1400ms;
+			}
 		</style>
 		<script>
+			var slidesCount = 8;
 			var slides = [
 				{
 					type: "single",
@@ -442,7 +481,7 @@
 					<div class="next">' +
 					(
 						(id !== slides.length - 1)?
-						'<a href="javascript:nextSlide()" id="nextLink">\
+						'<a href="javascript:showNextSlide(' + id + ')" id="nextLink">\
 							<img src="./img/next.svg" alt="Next Slide" class="nextImage">\
 						</a>':
 						'<a href="javascript:backToTop()" id="topLink">\
@@ -478,46 +517,43 @@
 				return toReturn;
 			}
 
-			function nextSlide(){
-				if (current < (slides.length - 1)){
-					document.querySelector(".page[data-id='" + current + "']").classList.add("up");
+			// function nextSlide(){
+			// 	// if (current < (slides.length - 1)){
+			// 	// 	document.querySelector(".page[data-id='" + current + "']").classList.add("up");
 
-					current++;
-				}
-			}
+			// 	// 	current++;
+			// 	// }
+			// }
 
-			function prevSlide(){
-				if (current > 0){
-					current--;
+			// function prevSlide(){
+			// 	// if (current > 0){
+			// 	// 	current--;
 
-					document.querySelector(".page[data-id='" + current + "']").classList.remove("up");
-				}
-			}
+			// 	// 	document.querySelector(".page[data-id='" + current + "']").classList.remove("up");
+			// 	// }
+			// }
 
 			function backToTop(){
-				count = 0;
-				for (var i = (slides.length - 1); i >= 0; i--){
-					count++;
-					setTimeout(function() {
-						var i = this.i;
-						console.log(i);
-						document.querySelector(".page[data-id='" + i + "']").classList.remove("up");
-					}.bind({thisRef: this, i: i}), 200 * count);
-				}
+				document.querySelector("#slides").classList.add("backTop");
+				document.querySelectorAll("#slides .page").forEach(function(item) {
+					item.classList.remove("up");
+				})
 
-				current = 0;
+				setTimeout(function(){
+					document.querySelector("#slides").classList.remove("backTop");
+				}, 2000);
 			}
 
 			function preload(){
-				preloading.forEach(function(item){
-					fetch("." + item)
-					.then(function(){
-						// Nothing, just preloading
-					});
-				});
+				// preloading.forEach(function(item){
+				// 	fetch("." + item)
+				// 	.then(function(){
+				// 		// Nothing, just preloading
+				// 	});
+				// });
 			}
 
-			function touchHandler(e, type){
+			function touchHandler(e, div, type){
 				if (e.touches && e.touches.length > 0){
 					list = e.touches
 				}
@@ -536,10 +572,10 @@
 					}
 					else {
 						if ((touchPoint.y - point.y) < 0){
-							prevSlide();
+							showPrevSlide(div.dataset.id);
 						}
 						else {
-							nextSlide();
+							showNextSlide(div.dataset.id);
 						}
 					}
 				}
@@ -551,21 +587,37 @@
 				}
 			}
 
+			function showNextSlide(id){
+				if (id < (slidesCount - 1)){
+					var el = document.querySelector(".page[data-id='" + id + "']");
+					el.classList.add("up");
+					el.getNextSibling().focus();
+				}
+			}
+
+			function showPrevSlide(id){
+				if (id > 0){
+					var el = document.querySelector(".page[data-id='" + (id - 1)+ "']");
+					el.classList.remove("up");
+					el.focus();
+				}
+			}
+
 			document.addEventListener("DOMContentLoaded", function(event){
 				preload();
 				loadSlides();
 
-				// "Scroll" event listeners
-				document.addEventListener("wheel", function(e){if (e.deltaY > 0) {nextSlide();}});
-				document.addEventListener("keydown", function(e){if (e.keyCode == 40) {nextSlide();}});
-				document.addEventListener("keydown", function(e){if (e.keyCode == 39) {nextSlide();}});
+				document.querySelectorAll("#slides .page").forEach(function(page) {
+					// "Scroll" event listeners
+					page.addEventListener("wheel", function(e){if (e.deltaY > 0) {showNextSlide(this.dataset.id);}});
 
-				document.addEventListener("wheel", function(e){if (e.deltaY < 0) {prevSlide();}});
-				document.addEventListener("keydown", function(e){if (e.keyCode == 37) {prevSlide();}});
-				document.addEventListener("keydown", function(e){if (e.keyCode == 38) {prevSlide();}});
+					page.addEventListener("wheel", function(e){if (e.deltaY < 0) {showPrevSlide(this.dataset.id);}});
 
-				document.addEventListener('touchstart', function(e){touchHandler(e, "start")});
-				document.addEventListener('touchend', function(e){touchHandler(e, "end")});
+					page.addEventListener('touchstart', function(e){touchHandler(e, this, "start")});
+					page.addEventListener('touchend', function(e){touchHandler(e, this, "end")});
+				});
+
+				document.querySelector(".page[data-id='0']").focus();
 			});
 		</script>
 		<meta name="application-name" content="SVOLTASTUDENTI | Elezioni 2019">
@@ -586,20 +638,6 @@
 			</a>
 		</div>
 		<div id="slides">
-			<div class="page" data-id="-1">
-				<div class="gradient"></div>
-				<div class="content">
-					<!-- Automatically filled -->
-				</div>
-				<div class="next">
-					<a href="javascript:nextSlide()" id="nextLink">
-						<img src="./img/next.svg" alt="Next Slide" class="nextImage">
-					</a>
-					<a href="javascript:backToTop()" id="topLink">
-						<img src="./img/top.svg" alt="Back to Top" class="nextImage">
-					</a>
-				</div>
-			</div>
 		</div>
 	</body>
 </html>
