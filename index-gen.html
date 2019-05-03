@@ -43,7 +43,7 @@
 			.national {
 				font-style: italic;
 				margin: 10px;
-				text-align: center;
+				text-align: center !important;
 			}
 
 			.logo {
@@ -55,6 +55,7 @@
 				height: 100%;
 				width: 50%;
 				max-width: 215px;
+				max-height: 25px;
 			}
 
 			.website {
@@ -131,22 +132,30 @@
 			    max-width: 60vmin;
 			}
 
-			.next {
+			.next, .prev {
 				z-index: 2;
-				position: absolute;
-				bottom: 10vh;
+				position: absolute;;
 				left: 0px;
 				right: 0px;
 				text-align: center;
 			}
 
+			.next {
+				bottom: 8vh
+			}
+
+			.prev {
+				top: 8vh;
+			}
+
 			.row {
 				display: flex;
 				flex-direction: column;
+				padding: 15px;
 			}
 
 			.row-cell-l img {
-				width: 82%;
+				width: 45%;
 				max-width: 500px;
 			}
 
@@ -178,8 +187,9 @@
 			}
 
 			.text {
-				/*font-size: x-large;
-				margin-bottom: 10px;*/
+				font-size: 4.5vw;
+				text-align: justify;
+				margin-bottom: 1vmin;
 			}
 
 			.btn {
@@ -211,6 +221,10 @@
 					padding: 50px;
 				}
 
+				.row-cell-l img {
+					width: 80%;
+				}
+
 				.title {
 					margin-bottom: 3vmin;
 					font-size: 6vmin;
@@ -218,9 +232,6 @@
 
 				.text {
 					font-size: 2vw;
-					padding: 15px;
-					text-align: justify;
-					margin-bottom: 1vmin;
 				}
 
 				.btn {
@@ -301,7 +312,7 @@
 							},
 							{
 								type: "text",
-								text: "in uscita, in media ogni anno al Politecnico di Milano. Non sono un po’ pochi? Crediamo le esperienze all’estero siano un aspetto fondamentale per la vita formativa di uno studente universitario ed è per questo di fondamentale importanza abbattere gli ostacoli che oggi professori all’antica, amministrazione e burocrazia pongono, più o meno volontariamente, a danno degli studenti."
+								text: "in uscita, in media ogni anno al Politecnico di Milano. Non sono un po’ pochi? Crediamo le esperienze all’estero siano un aspetto fondamentale per la vita formativa di uno studente universitario ed e’ per questo di fondamentale importanza abbattere gli ostacoli che oggi professori all’antica, amministrazione e burocrazia pongono, piu’ o meno volontariamente, a danno degli studenti."
 							}
 						]
 					]
@@ -325,7 +336,7 @@
 							},
 							{
 								type: "text",
-								text: "e per le attività studentesche culturali autorganizzate, è destinato annualmente. La vita universitaria non deve essere solo studio, ma formare persone a 360 gradi. Per questo crediamo serva un maggiore sforza da parte del Politecnico per arricchire l’esperienza di vita degli anni universitari."
+								text: "e per le attivita’ studentesche culturali autorganizzate, e’ destinato annualmente. La vita universitaria non deve essere solo studio, ma formare persone a 360 gradi. Per questo crediamo serva un maggiore sforza da parte del Politecnico per arricchire l’esperienza di vita degli anni universitari."
 							}
 						]
 					]
@@ -349,7 +360,7 @@
 							},
 							{
 								type: "text",
-								text: "è il tempo speso da uno studente in media in un percorso quinquennale al Politecnico di Milano. Non sono un po’ troppi? Crediamo che una formazione sia di qualità non soltanto con contenuti di alto livello, ma quando l’università mette a disposizione dello studente ogni strumento possibile per non perdere tempo e massimizzare l’efficacia dello studio. Solo così possiamo competere con i nostri colleghi internazionali che in genere completano il percorso in tempi minori, spesso con una formazione di minor qualità."
+								text: "e’ il tempo speso da uno studente in media in un percorso quinquennale al Politecnico di Milano. Non sono un po’ troppi? Crediamo che una formazione sia di qualita’ non soltanto con contenuti di alto livello, ma quando l’universita’ mette a disposizione dello studente ogni strumento possibile per non perdere tempo e massimizzare l’efficacia dello studio. Solo cosi’ possiamo competere con i nostri colleghi internazionali che in genere completano il percorso in tempi minori, spesso con una formazione di minor qualita’."
 							}
 						]
 					]
@@ -373,7 +384,7 @@
 							},
 							{
 								type: "text",
-								text: "iscritti alle lauree magistrali al Politecnico di Milano. Forse più di quanti pensavi? L’internazionalità è quasi un’esclusiva del Politecnico su tutto il territorio italiano e ci arricchisce ogni giorno creando connessioni e confronto con colleghi da tutto il mondo. Per questo il Politecnico deve investire ancora di più per agevolare l’integrazione e la partecipazione di questi studenti alla vita dell’ateneo."
+								text: "iscritti alle lauree magistrali al Politecnico di Milano. Forse piu’ di quanti pensavi? Linternazionalita’ e’ quasi un’esclusiva del Politecnico su tutto il territorio italiano e ci arricchisce ogni giorno creando connessioni e confronto con colleghi da tutto il mondo. Per questo il Politecnico deve investire ancora di piu’ per agevolare l’integrazione e la partecipazione di questi studenti alla vita dell’ateneo."
 							}
 						]
 					]
@@ -397,7 +408,7 @@
 							},
 							{
 								type: "text",
-								text: "alle scorse elezioni studentesche. Riesci a pensare a 5 tuoi compagni che non voteranno? Una partecipazione così bassa da portare pochissime energie ai vari tavoli in cui il Politecnico, ogni giorno, affronta i problemi degli studenti e prova a combattere la sfida dell’innovazione e del confronto con gli altri atenei di tutto il mondo. "
+								text: "alle scorse elezioni studentesche. Riesci a pensare a 5 tuoi compagni che non voteranno? Una partecipazione cosi’ bassa da portare pochissime energie ai vari tavoli in cui il Politecnico, ogni giorno, affronta i problemi degli studenti e prova a combattere la sfida dell’innovazione e del confronto con gli altri atenei di tutto il mondo. "
 							}
 						]
 					]
@@ -421,7 +432,7 @@
 					data: [
 						{
 							type: "button",
-							link: "#",
+							link: "/pdfs/programma_polimi.pdf",
 							text: "Leggi il programma"
 						},
 						{
@@ -431,24 +442,6 @@
 						}
 					]
 				}
-			];
-			var preloading = [
-				"/img/bg/1.jpg",
-				"/img/bg/2.jpg",
-				"/img/bg/3.jpg",
-				"/img/bg/4.jpg",
-				"/img/bg/5.jpg",
-				"/img/bg/6.jpg",
-				"/img/bg/7.jpg",
-				"/img/bg/8.jpg",
-				"/img/left/1.png",
-				"/img/left/2.png",
-				"/img/left/3.png",
-				"/img/left/4.png",
-				"/img/left/5.png",
-				"/img/left/6.png",
-				"/img/left/7.png",
-				"/img/left/8.png"
 			];
 			var current = 0;
 			var touchPoint = {
@@ -473,10 +466,19 @@
 
 				var returnDiv = document.createElement("div");
 				returnDiv.classList.add("page");
-				returnDiv.style.backgroundImage = "url('." + slides[id].background + "')";
+				// returnDiv.style.backgroundImage = "url('." + slides[id].background + "')";
 				returnDiv.dataset.id = id;
 				returnDiv.innerHTML = '\
 					<div class="gradient" style="background: ' + slides[id].gradient + '"></div>\
+					<div class="prev">' +
+					(
+						(id !== 0)?
+						'<a href="javascript:showPrevSlide(' + id + ')" id="nextLink">\
+							<img src="./img/prev.svg" alt="Prev Slide" class="nextImage">\
+						</a>':
+						''
+					) + 
+					'</div>\
 					<div class="content">' + toReturn + '</div>\
 					<div class="next">' +
 					(
@@ -517,22 +519,6 @@
 				return toReturn;
 			}
 
-			// function nextSlide(){
-			// 	// if (current < (slides.length - 1)){
-			// 	// 	document.querySelector(".page[data-id='" + current + "']").classList.add("up");
-
-			// 	// 	current++;
-			// 	// }
-			// }
-
-			// function prevSlide(){
-			// 	// if (current > 0){
-			// 	// 	current--;
-
-			// 	// 	document.querySelector(".page[data-id='" + current + "']").classList.remove("up");
-			// 	// }
-			// }
-
 			function backToTop(){
 				document.querySelector("#slides").classList.add("backTop");
 				document.querySelectorAll("#slides .page").forEach(function(item) {
@@ -542,15 +528,6 @@
 				setTimeout(function(){
 					document.querySelector("#slides").classList.remove("backTop");
 				}, 2000);
-			}
-
-			function preload(){
-				// preloading.forEach(function(item){
-				// 	fetch("." + item)
-				// 	.then(function(){
-				// 		// Nothing, just preloading
-				// 	});
-				// });
 			}
 
 			function touchHandler(e, div, type){
@@ -571,11 +548,13 @@
 						touchPoint = point;
 					}
 					else {
-						if ((touchPoint.y - point.y) < 0){
-							showPrevSlide(div.dataset.id);
-						}
-						else {
-							showNextSlide(div.dataset.id);
+						if (Math.abs(touchPoint.y - point.y) > 20){
+							if ((touchPoint.y - point.y) < 0){
+								showPrevSlide(div.dataset.id);
+							}
+							else {
+								showNextSlide(div.dataset.id);
+							}
 						}
 					}
 				}
@@ -591,7 +570,6 @@
 				if (id < (slidesCount - 1)){
 					var el = document.querySelector(".page[data-id='" + id + "']");
 					el.classList.add("up");
-					el.getNextSibling().focus();
 				}
 			}
 
@@ -599,13 +577,15 @@
 				if (id > 0){
 					var el = document.querySelector(".page[data-id='" + (id - 1)+ "']");
 					el.classList.remove("up");
-					el.focus();
 				}
 			}
 
 			document.addEventListener("DOMContentLoaded", function(event){
-				preload();
 				loadSlides();
+
+				document.querySelectorAll("#slides .page").forEach(function(e){
+					e.style.backgroundImage = "url('./img/bg/"+e.dataset.id+".jpg')"
+				});
 
 				document.querySelectorAll("#slides .page").forEach(function(page) {
 					// "Scroll" event listeners
@@ -616,8 +596,6 @@
 					page.addEventListener('touchstart', function(e){touchHandler(e, this, "start")});
 					page.addEventListener('touchend', function(e){touchHandler(e, this, "end")});
 				});
-
-				document.querySelector(".page[data-id='0']").focus();
 			});
 		</script>
 		<meta name="application-name" content="SVOLTASTUDENTI | Elezioni 2019">
